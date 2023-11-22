@@ -1,0 +1,44 @@
+def combine_data(trade_datas):
+
+This function is used to merge different datasets. A list of DataFrames is passed, which are combined into one at the end. Since datasets from different companies is used in this project, it is necessary to merge them in a standardised way.
+
+def modify_data(trade_data, t_previous_days, t_label_days):
+This function is used to modify a data set. The purpose of modifying the data set is to extract more information from the given data set and use it as an additional feature. The new fetures are used, for example, to recognise temporal patterns. The label is also created in this function. 
+To execute the functions, the dataset is required as well as the number of days immediately before and after the respective data point that are to be analysed
+
+def plot_label_visualization(data):
+With this function, two features are always compared graphically in the form of coordinate systems and entered data points. This makes it clear which of the features created play a major role in identifying the label or have no influence.
+
+def plot_label_visualization(data):
+This function displays the result of the automatically created labels. The progression of a price is displayed graphically. For each label, 3 data points are selected at random and displayed in the graph in the form of dots in different colours. A vertical line with the respective colour is then drawn for each data point, making it clear which point in time is being considered for a forecast. 
+
+
+The following functions have been created to summarise all the individual steps involved in creating the respective models. The general procedure of the functions is very similar. To execute the function, a previously modified dataset is provided. Firstly, the dataset is split into test and training data. Then the model is created and trained with the training data. At the end, the trained model is tested with the test data and a value for the accuracy is created. At the end, the model, the predictions made during testing, the labels and the accuracy are returned.
+
+def run_decision_tree_classifier_by_sklearn(modified_trade_data):
+This function is about the creation of a decision tree classifier with the help of the module of the Skleran library. The following function by Sklearn is used: ....
+
+def def run_random_forest_classifier_by_sklearn(modified_trade_data):
+This function involves the creation of a random forest classifier with the help of the Skleran library module. The following function by SKlearn is used: ....
+
+def run_decision_tree_from_scratch(modified_trade_data):
+This function involves the creation of a decision tree classifier whose algorithm was implemented within the scope of this project. The exact algorithm will be explained in more detail later.
+
+def def run_random_forest_from_scratch(modified_trade_data):
+This function involves the creation of a random forest classifier whose algorithm was implemented within the scope of this project. The exact algorithm will be explained in more detail later.
+
+class Tree_Node():
+The class Tree_Node represents a Node in a Decision Tree. It contains information about the splitting of the tree including the feature index, a threshhold and a subtree. Additionally it contains the information gain resulting frim a splitting of a tree. Furthermore it contains the label if it is a leaf node.
+
+class Decision tree():
+The Decision_tree class represents a Decision tree classifier which is implemented from scratch in the puprose of this project. It contains the parameters like mind_datas_branching and max_depth which describe how often a tree will be splitted and the maximum depth of the split. Furthermore it contains the root of the previous branches.
+
+def create_tree(self, dataset, curr_depth=0) 
+The function create_tree builds a Decision Tree recursively based on the given dataset. It uses values like min_datas_branching and max_depth as conditional values to decide wether a conditions are met to calculate the best split and build another subtree recursively. If the conditions aren't met, a leaf node will be created.
+
+def get_best_branching(self, dataset, number_of_datas, number_of_features):
+This method searches for the best split in a decision tree based on the dataset. It iterates through the features and their possible thresholds to calculate the best branching. It calculates the potential threshold for every feature, devides the dataset and calculates the information gain using wether the gini index or the entropy. It updates the dictionary of the best branchings based on the most highest possible improvement in the information gain value.
+
+def branch_tree(self, dataset, feature_index, threshold)::
+
+
