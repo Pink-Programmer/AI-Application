@@ -39,6 +39,55 @@ The function create_tree builds a Decision Tree recursively based on the given d
 def get_best_branching(self, dataset, number_of_datas, number_of_features):
 This method searches for the best split in a decision tree based on the dataset. It iterates through the features and their possible thresholds to calculate the best branching. It calculates the potential threshold for every feature, devides the dataset and calculates the information gain using wether the gini index or the entropy. It updates the dictionary of the best branchings based on the most highest possible improvement in the information gain value.
 
-def branch_tree(self, dataset, feature_index, threshold)::
+def branch_tree(self, dataset, feature_index, threshold):
+The function branch_tree devides a dataset based on a feature and a threshold. It creates two arrays in which the datas smaller or bigger then the treshholds are seperated.
+
+def information_gain(self, parent, l_child, r_child, mode="entropy"):
+The information_gain function is used to calculate the information gain after a splitting of a branch. For the calculation it uses ether the Gini index or the entropy, determined by the 'mode' parameter.
+
+def entropy(self, y):   
+With the entropy function, disorders and randomness within a set of labels can be calculated. By examinating the different types of labels and quantifying how unpredictabile they are, it calculates a probability.
+
+def gini_index(self, y): 
+With the function gini_index, similar like in the entropy funtion, the impurity or disorder is going to be mesured.By iterating through the labels, it calcultes the Gini index based on the probobilzy of the occurrence of each of the labels. After applying a specific mathematical formula, it returns the Gini index.
+
+def calculate_leaf_value(self, label):
+The funtion calculate_leaf_value detects the label of a leaf note. It predicts the value by doing a majority voting of the labels that the leaf contains. The most frequent label will be returned as it's label.
+
+def fit(self, data, label):
+Withe the fit function, the Decsion Tree is going to be trained. For this, the dataset and the labels are getting merched before using the function create_tree to establish the nodes.
+
+def predict(self, data): 
+The function predict is used to create predictions based on the given dataset. It iterates through each data point and creates a prediction with the funktion make_predictions function.
+
+def make_prediction(self, x, tree):
+The make_prediction function is used within the predict function. It uses the Decision Tree structure and evaluates a single data point against the nodes of the tree. It compares the feature values with the nodes and finds the correct root through the tree. Finally it finds the predicted label when reaching the leaf note and returns it.
+
+
+____
+
+
+class RandomForest:
+The class RandomForest is used to build a Random Forest model. It is implemented from scratch and create decision trees that are, as described above, implemented in scratch as well. The RandomForest class uses parameters like n_trees to describe the number of trees within the decision forest. Furthermore it uses the parameters like max_depth and min_datas_branching which are necessary to create a decision tree. Furthermore it contains a parameter which describes the number of features in the dataset and another which contains all trees in an array.
+
+def fit(self, X, y):
+The Random Forest gets trained by the function fit. It creates multiple Decision Trees for the forest. When creating the Decision tree, it uses the functions that are explained in the Decision Tree class section. After the creation of the individual decision trees the function samples() is going to be used to create a diverse subsets for the input data of each tree. This way, the Random Forest model has a higher variability among a tree which leads to more robustness and a higher predictive performance.
+
+def samples(self, X, y):
+After each Decision tree is created, the function samples() creates different training datasets for each tree. These datasets are created randomly out of the given dataset. This way, unique training datasets are created which leads to an individual training of the trees.
+
+def identify_most_common(self, y):
+This function detects the most frequently occuring label within a set of labels. These labels are created by all of the Decision trees in the Random Forest. The most common label will be returned.
+
+def predict(self, X):
+With the predict() function, the created Random Forest model will be used to predict the label of a given test dataset. The data will run through all created Decision trees in the forest. Each Decision tree will predict the label of the data. Using the predictions of all trees, the most commen predicted label is going to be taken as the final predicted label.
+
+______
+
+
+def plot_roc(label, Y_test, Y_pred):
+The function plot_roc() is used to plot the Receiver Operating Characteristic (ROC) curve. It is used to evaluate the model on it's quality. It takes the predicted and the true labels and calculates the false positive and and true positive rate. With these rates, the function will plot the ROC curve which will visualize the model's perfomrance.
+
+
 
 
