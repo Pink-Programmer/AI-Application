@@ -111,20 +111,8 @@ Several functions were declared for the realization of the project and subsequen
 
 This function is used to merge different datasets. A list of DataFrames is passed, which are combined into one at the end. Since datasets from different companies are used in this project, it is necessary to merge them in a standardized way.
 '''
+
 def combine_data(trade_datas):
-    """
-    Combines multiple DataFrames into one.
-    Also checks if the coulmn features fit to each other
-
-    Parameters:
-    trade_datas (list): A list containing DataFrames that are going to be combined.
-
-    Returns:
-    DataFrame: A combined DataFrame containing all combined data
-
-    Raises:
-    ValueError: Error Message if the input DataFrames do not have a matching column structure.
-    """
     #chekcing if trade_data is empty
     if len(trade_datas) == 0:
         return None
