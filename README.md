@@ -161,12 +161,11 @@ The variable j is the total number of classes in the target variable and p_i ref
 
 Once the best possible condition based on the highest information gain has been determined, the data is split based on this and the process is repeated for each new node. The process continues until the stop conditions are met. The stop conditions are described in the following:
 
-    - All data points in a node belong to the same class
+- All data points in a node belong to the same class.
     
-    - The maximum depth of the tree has been reached
+- The maximum depth of the tree has been reached.
     
-    - The minimum number of data points in a node has been  
-       reached.
+- The minimum number of data points in a node has been reached.
 
 As soon as the stop conditions are met, a leaf node is created instead of a decision node. The leaf node determines the class affiliation of the respective root in the Decision Tree.
 
@@ -344,13 +343,13 @@ The measure of a classification model’s performance at all classification thre
 
 The ROC Curve plots two parameters, True Positive rate (TPR) against False Positive rate (FPR), for all classification threshold values between 0 and 1. To understand TPR and FPR, the following key definitions from the Confusion Matrix are used:
 
-    True Positive (TP): positive cases successfully classified into the positive group. 
+True Positive (TP): positive cases successfully classified into the positive group. 
                                       
-     False Positive (FP): negative cases incorrectly classified into the positive group. 
+False Positive (FP): negative cases incorrectly classified into the positive group. 
                                        
-    True Negative (TN): negative cases successfully classified into the negative group.
+True Negative (TN): negative cases successfully classified into the negative group.
                                        
-    False Negative (FN): positive cases incorrectly classified into the negative group.
+False Negative (FN): positive cases incorrectly classified into the negative group.
 
 The TPR is the measure of percentage of positive cases correctly distinguished out of all positive cases, given by the following formula: 
 
