@@ -128,7 +128,7 @@ def combine_data(trade_datas):
     #create one DataFrame from combined data
     combined_data = pd.concat(trade_datas, ignore_index=True)
     return combined_data
-    ```
+```
 
 ***def modify_data(trade_data,t_previous_days, t_label_days, comprimize_data):***
 
