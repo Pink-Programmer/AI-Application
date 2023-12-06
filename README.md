@@ -61,7 +61,6 @@ Volume – The total number of shares traded in the day.
 
 Adj Close - This means the adjusted closing price of the day. It’s adjusted to better reflect the stock’s value after anything such as corporate actions would affect the stock price after the market closes. However, this was taken out for consistency reasons.
 
----
 ### B.	Modified Dataset and Features
 
 The dataset is extended with modified data to make the dataset bigger and create more data for the AI to train on. With the additional created data, possible patterns and relationship between different information will be recognized by the AI. In the following it is described how the data is going to be modified and extended.
@@ -134,8 +133,7 @@ Root node – starting (top) node with all data points
 
 Decision node(s) – nodes with condition(s) to split data
      
-Leaf nodes – nodes with ideally only data points of a   
-                           single class
+Leaf nodes – nodes with ideally only data points of a single class
 
 Starting from the root node, the Decision Tree classifier decides on the most optimal way to split the dataset into subsets. There are conditions in the decision nodes for splitting the data. Based on the conditions, the data is distributed to two or more branches. For example, a threshold can be used as a possible condition with which the features in the dataset are compared. The value of the threshold is random at the beginning and is adjusted during training. Optimal conditions are achieved during training with the highest possible information gain.
 
@@ -281,8 +279,6 @@ This function detects the most frequently occurring label within a set of labels
 
 With the predict function, the created Random Forest model will be used to predict the label of a given test dataset. The data will run through all created Decision Trees in the forest. Each Decision Tree will predict the label of the data. Using the predictions of all trees, the most common predicted label is going to be taken as the final predicted label.
 
--------
-
 IV.	EVALUATION AND ANALYSIS
 ---
 ### A.	Concept for analysing the model
@@ -309,8 +305,6 @@ Based on the different variations, a total of 16 different models are created an
   
 -	Number of trees in the forest = 10
 
-----
-
 ### B.	Analyzis of the dataset
 
 Before the dataset is used to train an artificial intelligence, it is first analyzed. The analysis is used to determine whether the dataset is suitable for classification and whether certain features have dependencies with regard to classification. A table with a large number of two-dimensional coordinate systems is created to analyze the dataset. In each coordinate system, two features are compared with each other by assigning them an axis and drawing data points based on them, which are colored differently according to their labels. If the differently colored data points are visibly separated in the coordinate system, this indicates that the respective features have a high significance in terms of classification. In addition, a graph is created for each feature, which shows the distribution of the data points according to their labels. A graph in the corresponding color is generated for each label. The more the distributions differ, the more meaningful the features are for classification.
@@ -331,13 +325,9 @@ Figure 8 - The analysis of the dataset that was expanded with the modified featu
 
 Based on the analyzed datasets, it is now possible to forecast the behavior of the model's prediction quality based on the dataset used in the training.
 
----
-
 ### C.	AI Methodology Selection
 Based on the analysis of data, the selection of Decision Tree and Random Forest is justified in this chapter. Due to the grouped distribution of data points in their labels, most data points are spatially separable. Under these circumstances, Random Forests are well suited. As this model is based on the Decision Tree concept, this method is also considered in this thesis.
 
-
-----
 ### D.	Receiver operating characteristic
 The measure of a classification model’s performance at all classification thresholds can be visualized on a graph called the ROC Curve (receiver operating characteristic curve).
 
@@ -370,8 +360,6 @@ With the ROC Curve, reading the AUC (2D area under the ROC Curve) provides us in
 Figure 9 - The ROC Curve
 
 The AUC is a metric ranging from 0 to 1. A value of 0 suggests that all positive and negative instances are completely misclassified, while a value of 1 signifies perfect classification, where all instances are correctly placed in their respective classes. In the diagram above, the AUC is exactly 0.5, implying that the chance of a correct classification is only 50%, equivalent to that of a random coin flip. The ROC trending upwards and covering a larger AUC indicates better model performance, demonstrating an enhanced ability to accurately distinguish between positive and negative classes. On the other hand, a downward trend in the curve represents a worse performance of a model comparatively.
-
----
 
 V.	RESULTS
 ---
@@ -406,7 +394,7 @@ In a recent study, Sadorsky (2021) employed the Random Forests method to forecas
 In another project, the future performance of the S&P 500 stock was predicted. Here, the prediction focused only on the values that were already available in the dataset and used these as the only features. The features are similar features that reflect, for example, open, close, high, low, etc. Here, an accuracy of 57% was achieved. The large difference in the accuracy values is possibly due to the feature extraction, which was not carried out in this case.
 
 VII.	CONCLUSION
---
+---
 In this project, artificial intelligence is used to predict whether the price of a share will rise or fall in the near future. Based on the analyses and tests carried out in the previous chapters, it becomes clear that the realization and quality of the models subsequently created depend on various points.
 
 On the one hand, the quality of the model's prediction depends on the quality of the dataset. The analyses have made it clear that training with less meaningful features leads directly to a poorer quality of the prediction.
