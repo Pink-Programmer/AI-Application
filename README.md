@@ -148,7 +148,7 @@ Entropy is the measure of impurity of data points. The aim here is to achieve a 
 
 p_i refers to the percentage of class i in the data subset at the node. Using the entropy determined, the information gain can be calculated as follows:
 
-<img width="300" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/49468231/fc3ac685-8715-4afe-8ddf-35fa998a8943">
+<img width="430" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/49468231/35ea7cc6-a386-4183-9552-60707dd2c558">
 
 w_i refers to the weight of class i expressed as a fraction of the data subset at the node.
 
@@ -158,7 +158,7 @@ Compared to entropy, the Gini index concentrates on the probability that a rando
 
 The variable j is the total number of classes in the target variable and p_i refers to the percentage of class i in the data subset at the node. Similar to the use of entropy, the information gain can be calculated using the Gini index and the following formula:
 
-<img width="277" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/49468231/9d3eade8-f258-46d4-ad15-b56ba112ccc9">
+<img width="425" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/49468231/2ab98cea-d042-482f-974e-617e0fba891c">
 
 Once the best possible condition based on the highest information gain has been determined, the data is split based on this and the process is repeated for each new node. The process continues until the stop conditions are met. The stop conditions are described in the following:
 
