@@ -26,7 +26,7 @@ II.	DATASET
 
 This chapter describes the datasets that were used for the realization of this project.
 
-A.	TESLA Stock Dataset (TSLA)
+## A.	TESLA Stock Dataset (TSLA)
 
 The TESLA dataset includes approx. 10 years of the TSLA stock data from June 29, 2010 - February 3, 2020. The original dataset was slightly modified removing Adj Close for consistency reasons. Hence, the features that are included in the modified dataset are as follows: Date, Open, High, Low, Close, Volume, and Rate of Change. The prices are based on USD.
 
