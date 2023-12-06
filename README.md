@@ -96,7 +96,7 @@ C.	Creating a label
 
 The labels 1 and 0 are used to predict a rising or falling price, respectively. The labels are determined on the basis of the average rate of the low value. The low value, which represents the lowest price on a day, is used to forecast based on a worst-case scenario. To check the quality of the labels, the stock price performance is visualized with 3 data points each for a fall and rise in the stock price. The visualization is shown in the figure below. The green dots represent the rise and the red dots the fall of the share price.
 
-<img width="246" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/94784f74-5888-4f4d-a45e-c3b7463f9ab9">
+<img width="500" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/94784f74-5888-4f4d-a45e-c3b7463f9ab9">
 
 Figure 3 – Visualization of the labels
 
@@ -124,7 +124,7 @@ F.	Function of a Decision Tree
 
 A Decision Tree classifier is a machine learning algorithm that can be used for classification purposes. The model resembles a tree that recursively splits the dataset into subsets decided by the values of parameters, that are regularly adjusted when training the model to achieve a higher level of accuracy. The following image illustrates the function of a Decision Tree:
 
-<img width="233" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/456a947d-60e9-48fa-88c6-26c6ef6e97b9">
+<img width="500" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/456a947d-60e9-48fa-88c6-26c6ef6e97b9">
 
 Figure 4 - The structure of a Decision Tree
 
@@ -318,7 +318,7 @@ Before the dataset is used to train an artificial intelligence, it is first anal
 
 Figure 7 shows the analysis of the dataset without modified features. A larger figure can be found in the appendix.
 
-<img width="246" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/21419272-d8cf-4a34-b4b9-9bd7c151ad42">
+<img width="500" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/21419272-d8cf-4a34-b4b9-9bd7c151ad42">
 
 Figure 7 - The analysis of the dataset without modified features
 
@@ -326,7 +326,7 @@ Figure 7 shows that none of the features is highly significant for a clear class
 
 Figure 8 shows the analysis of the dataset that was expanded with the modified features. This is an excerpt. The entire figure can be found in the appendix. In this case, it is noticeable that some of the data points are better grouped in the coordinate systems. This indicates a higher significance of the features in the classification of data points. In addition, a difference can be seen between some of the graphs created. 
 
-<img width="229" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/b94256b4-113e-451b-ad86-a74876d18b37">
+<img width="500" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/b94256b4-113e-451b-ad86-a74876d18b37">
 
 Figure 8 - The analysis of the dataset that was expanded with the modified features
 
@@ -366,7 +366,7 @@ FPR=FP/(FP + TN)
 
 With the ROC Curve, reading the AUC (2D area under the ROC Curve) provides us insight on the ability of the binary classifier to separate between classes. 
 
-<img width="241" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/35f300a1-fbfc-4d4f-a35a-c5bdbb902aa4">
+<img width="500" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/35f300a1-fbfc-4d4f-a35a-c5bdbb902aa4">
 
 Figure 9 - The ROC Curve
 
@@ -376,7 +376,7 @@ The AUC is a metric ranging from 0 to 1. A value of 0 suggests that all positive
 
 E.	Results
 
-<img width="244" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/1c562e7c-8a56-463c-b1e7-ab55e5980bb4">
+<img width="500" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/1c562e7c-8a56-463c-b1e7-ab55e5980bb4">
 
 Table 1 - The accuracies of the models
 
@@ -384,7 +384,7 @@ In Table 1, the accuracies of the various models are recorded. From this, differ
 
 Based on the analysis of the dataset in chapter IV, it has been confirmed that training an artificial intelligence with only the original features leads to a poor result. Among all models, both the Decision Tree and the Random Forest show by far the worst results. Figure 10 shows the ROC curve of the Decision Tree and Random Forest that were trained with the original features. The curves are very close to the 45-degree line, which is similar to the probability of a coin flip.
 
-<img width="246" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/f6cae0a3-a45a-45a0-a786-2d29ece6fbfd">
+<img width="500" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/f6cae0a3-a45a-45a0-a786-2d29ece6fbfd">
 
 Figure 10 - ROC curve: trained with the original features
 
@@ -394,7 +394,7 @@ Comparing the results of the models with t = 10, which were trained with all or 
 
 Figure 11 - ROC curve: trained with compromised features
 
-<img width="246" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/38634019-3d42-457f-b84a-f8608931c8d7">
+<img width="500" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/38634019-3d42-457f-b84a-f8608931c8d7">
 
 Figure 12 - ROC curve: trained with all features
 
