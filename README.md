@@ -1,4 +1,4 @@
-![image](https://github.com/Pink-Programmer/AI-Application/assets/117917016/83a58923-ace9-4863-bb92-91035ba83975)# AI-Application
+# AI-Application
 Group Assignment: Stock market prediction
 
 
