@@ -144,21 +144,21 @@ Information gain is defined as the effectiveness of a splitting condition in red
 
 Entropy is the measure of impurity of data points. The aim here is to achieve a low value. The lower the entropy value, the more homogeneous the data is after splitting. The entropy value is calculated as follows:
 
-Entropy=- ∑_(i=1)^n▒〖p_i* log (p_i)〗  
+<img width="140" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/49468231/4f3ef190-e065-4f5c-90a4-d745df6f8cca">
 
 p_i refers to the percentage of class i in the data subset at the node. Using the entropy determined, the information gain can be calculated as follows:
 
-Information Gain= Entropy(parent)- ∑▒〖w_i* Entropy(〖child〗_i)〗
+<img width="300" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/49468231/fc3ac685-8715-4afe-8ddf-35fa998a8943">
 
 w_i refers to the weight of class i expressed as a fraction of the data subset at the node.
 
 Compared to entropy, the Gini index concentrates on the probability that a randomly selected instance will be misclassified. The aim here is to achieve the lowest possible value. The lower the Gini index, the lower the probability that something will be classified incorrectly. The Gini index is calculated as follows:
 
-Gini=1- ∑_(i=1)^j▒〖p_i〗^2 
+<img width="101" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/49468231/c5b8faec-ecae-4313-947b-215259a5d718">
 
 The variable j is the total number of classes in the target variable and p_i refers to the percentage of class i in the data subset at the node. Similar to the use of entropy, the information gain can be calculated using the Gini index and the following formula:
 
-Information Gain=Gini(parent)  - ∑▒〖w_i*Gini(〖child〗_i)〗
+<img width="277" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/49468231/9d3eade8-f258-46d4-ad15-b56ba112ccc9">
 
 Once the best possible condition based on the highest information gain has been determined, the data is split based on this and the process is repeated for each new node. The process continues until the stop conditions are met. The stop conditions are described in the following:
 
