@@ -380,4 +380,40 @@ E.	Results
 
 Table 1 - The accuracies of the models
 
+In Table 1, the accuracies of the various models are recorded. From this, different behaviors of the model can be observed. In general, it should be noted that the Random Forest shows a slightly better result in each of the cases. This confirms the theory that a Random Forest has improved robustness, accuracy and resistance to overfitting compared to a Decision Tree.
+
+Based on the analysis of the dataset in chapter IV, it has been confirmed that training an artificial intelligence with only the original features leads to a poor result. Among all models, both the Decision Tree and the Random Forest show by far the worst results. Figure 10 shows the ROC curve of the Decision Tree and Random Forest that were trained with the original features. The curves are very close to the 45-degree line, which is similar to the probability of a coin flip.
+
+<img width="246" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/f6cae0a3-a45a-45a0-a786-2d29ece6fbfd">
+
+Figure 10 - ROC curve: trained with the original features
+
+Comparing the results of the models with t = 10, which were trained with all or compromised features, it can be seen that it can be seen that the accuracy decreased with the reduction in the number of features. This can be explained by the reduction in available information, which is accepted in return for the increase in speed of the model. The following figures show the difference between the ROC curves in this regard.
+
+<img width="246" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/e1e8fa58-661d-47ef-8560-8bc9fa675ff0">
+
+Figure 11 - ROC curve: trained with compromised features
+
+<img width="246" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/38634019-3d42-457f-b84a-f8608931c8d7">
+
+Figure 12 - ROC curve: trained with all features
+
+For most models, a prediction of the stock price at a later date is of higher quality. However, it is noticeable that the predictions lose quality when training with all features and t = 20. In comparison, the quality of the predictions increases significantly when training with compromised features and t = 20.
+
+V.	RELATED WORKS
+---
+In a recent study, Sadorsky (2021) employed the Random Forests method to forecast cleaning energy stock prices. The study's results demonstrated a remarkable level of accuracy, with a prediction rate of over 80% for a 10-day forecast and an even more impressive 90% for a 20-day forecast. Modifying the dataset can have an impact on the accuracy of the model. Multiple widely recognized technical indicators are used as features, such as moving average cross-over divergence (MACD), relative strength indicator (RSI), stochastic oscillator (slow, fast), price rate of change (ROC), and advance-decline line (ADX) (Sadorsky, 2021). These features are similar to those created as part of this project work. However, they differ in terms of the calculation and the type of display. For example, the change in the file price is shown in both datasets. However, in this project this is done as a gradient, whereas in the study the percentage change is taken into account.
+
+In another project, the future performance of the S&P 500 stock was predicted. Here, the prediction focused only on the values that were already available in the dataset and used these as the only features. The features are similar features that reflect, for example, open, close, high, low, etc. Here, an accuracy of 57% was achieved. The large difference in the accuracy values is possibly due to the feature extraction, which was not carried out in this case.
+
+VI.	CONCLUSION
+--
+In this project, artificial intelligence is used to predict whether the price of a share will rise or fall in the near future. Based on the analyses and tests carried out in the previous chapters, it becomes clear that the realization and quality of the models subsequently created depend on various points.
+
+On the one hand, the quality of the model's prediction depends on the quality of the dataset. The analyses have made it clear that training with less meaningful features leads directly to a poorer quality of the prediction.
+
+On the other hand, the tests in this thesis made it clear that the creation and training of the Decision Tree and Random Forest depend on the prediction target. In the test, predictions of the stock price for the next 10 or 20 days were considered. The significant increase in accuracy was noticeable for a model that was trained with compromised features as soon as the stock price is to be predicted for a longer period in the future. In comparison, in a training with all extracted features, the accuracy for the prediction of the price in the near future has decreased.
+
+This behavior leads to the conclusion that there is no perfect concept for creating and training the model that produces the same result regardless of the circumstances. In relation to this project, the concept depends on what exactly is to be predicted. It can be noted that some features that are missing in the compromised version of the dataset contain more meaningful information for a shorter-term prediction, which might be confusing for a longer-term prediction. It can thus be concluded that a higher number of features does not directly lead to better accuracy.
+
 
