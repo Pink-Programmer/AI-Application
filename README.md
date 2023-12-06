@@ -108,15 +108,15 @@ In terms of training and testing, the modified dataset will be split up 70% of t
 
 Several functions were declared for the realization of the project and subsequently applied. Their use is described below. The exact code can be found in the Jupyter notebook file.
 
-**def combine_data(trade_datas):**
+***def combine_data(trade_datas):***
 
 This function is used to merge different datasets. A list of DataFrames is passed, which are combined into one at the end. Since datasets from different companies are used in this project, it is necessary to merge them in a standardized way.
 
-**def modify_data(trade_data,t_previous_days, t_label_days, comprimize_data):**
+***def modify_data(trade_data,t_previous_days, t_label_days, comprimize_data):***
 
 This function is used to modify a dataset. The purpose of modifying the dataset is to extract more information from the given dataset and use it as an additional feature. The new features are used, for example, to recognize temporal patterns. The label is also created in this function. To execute the functions, the dataset is required as well as the number of days immediately before and after the respective data points that are to be analyzed. comprimize_data is a boolean which is used to determine whether all modified features should be used or a compromised version.
 
-**def plot_label_visualization(data):**
+***def plot_label_visualization(data):***
 
 This function displays the result of the automatically created labels. The progression of a price is displayed graphically. For each label, 3 data points are selected at random and displayed in the graph in the form of dots in different colors. A vertical line with the respective color is then drawn for each data point, making it clear which point in time is being considered for a forecast.
 
@@ -192,93 +192,93 @@ To merge the predictions of all trees and create a single prediction of the Rand
 
 In this project, the Decision Tree and Random Forest are both created with the library sklearn and programmed from scratch. As the models are each trained and compared with different parameters, functions are defined for the executions. The following functions have been created to summarize all the individual steps involved in creating the respective models. The general procedure of the functions is very similar. To execute the function, a previously modified dataset is provided. Firstly, the dataset is split into test and training data. Then the model is created and trained with the training data. At the end, the trained model is tested with the test data and a value for accuracy is created. At the end, the model, the predictions made during testing, the labels and the accuracy are returned. The declared functions of the respective models are presented in the following.
 
-**def run_decision_tree_classifier_by_sklearn(modified_ trade_data)**
+***def run_decision_tree_classifier_by_sklearn(modified_ trade_data)***
 
 This function is about the creation of a Decision Tree classifier with the help of the module of the sklearn library. The following function by sklearn is used: DecisionTreeClassifier(max_depth=10,min_samples_split=5)
 
-**def run_random_forest_classifier_by_sklearn(modified_ trade_data):**
+***def run_random_forest_classifier_by_sklearn(modified_ trade_data):***
 
 This function is about the creation of a Random Forest classifier with the help of the module of the sklearn library. The following function by sklearn is used: RandomForestClassifier(n_estimators=10, random_state=42,max_depth=10, min_samples_split=5)
 
-**def run_decision_tree_from_scratch(modified_trade_ data)**
+***def run_decision_tree_from_scratch(modified_trade_ data)***
 
 This function involves the creation of a Decision Tree classifier whose algorithm was implemented within the scope of this project. The exact algorithm will be explained in more detail later.
 
-**def run_random_forest_from_scratch(modified_trade_ data)**
+***def run_random_forest_from_scratch(modified_trade_ data)***
 
 This function involves the creation of a Random Forest classifier whose algorithm was implemented within the scope of this project. The exact algorithm will be explained in more detail later.
 
 The implementation from scratch is described below, starting with the Decision Tree.
 
-**class Tree_Node():**
+***class Tree_Node():***
 
 The class Tree_Node represents a Node in a Decision Tree. It contains information about the splitting of the tree including the feature index, a threshold, and a subtree. Additionally, it contains the information gain resulting from the splitting of a tree. Furthermore, it contains the label if it is a leaf node.
 
-**class DecisionTree():**
+***class DecisionTree():***
 
 The DecisionTree class represents a Decision Tree classifier which is implemented from scratch in the purpose of this project. It contains the parameters like min_datas_branching and max_depth which describe how often a tree will be split and the maximum depth of the split. Furthermore, it contains the roots of the previous branches.
 
-**def create_tree(self, dataset, curr_depth=0)**
+***def create_tree(self, dataset, curr_depth=0)***
 
 The function create_tree builds a Decision Tree recursively based on the given dataset. It uses values like min_datas_branching and max_depth as conditional values to decide whether conditions are met to calculate the best split and build another subtree recursively. If the conditions aren't met, a leaf node will be created.
 
-**def get_best_branching(self, dataset, number_of_datas, number_of_features)**
+***def get_best_branching(self, dataset, number_of_datas, number_of_features)***
 
 This method searches for the best split in a Decision Tree based on the dataset. It iterates through the features and their possible thresholds to calculate the best branching. 
 
 It calculates the potential threshold for every feature, divides the dataset and calculates the information gain using whether the Gini index or the entropy. It updates the dictionary of the best branching based on the highest possible improvement in the information gain value.
 
-**def branch_tree(self, dataset, feature_index, threshold)**
+***def branch_tree(self, dataset, feature_index, threshold)***
 
 The function branch_tree divides a dataset based on a feature and a threshold. It creates two arrays in which the data smaller or bigger than the thresholds are separated.
 
-**def information_gain(self, parent, l_child, r_child, mode="entropy")** 
+***def information_gain(self, parent, l_child, r_child, mode="entropy")*** 
 
 The information gain function is used to calculate the information gain after a splitting of a branch. For the calculation it uses either the Gini index or the entropy, determined by the 'mode' parameter.
 
-**def entropy(self, y):**   
+***def entropy(self, y):***   
 
 With the entropy function, disorders and randomness within a set of labels can be calculated. By examining the different types of labels and quantifying how unpredictable they are, it calculates the probability.
 
-**def gini_index(self, y):**
+***def gini_index(self, y):***
 
 With the function Gini index, similar to the entropy function, the impurity or disorder is going to be measured. By iterating through the labels, it calculates the Gini index based on the probability of the occurrence of each of the labels. After applying a specific mathematical formula, it returns the Gini index.
 
-**def calculate_leaf_value(self, label):**
+***def calculate_leaf_value(self, label):***
 
 The function calculate_leaf_value detects the label of a leaf note. It predicts the value by doing a majority voting of the labels that the leaf contains. The most frequent label will be returned as its label. 
 
-**def fit(self, data, label):**
+***def fit(self, data, label):***
 
 With the fit function, the Decision Tree is going to be trained. For this, the dataset and the labels are merged before using the function create_tree to establish the nodes.
 
-**def predict(self, data):**
+***def predict(self, data):***
 
 The predict function is used to create predictions based on the given dataset. It iterates through each data point and creates a prediction with the function make_prediction function. 
 
-**def make_prediction(self, x, tree):**
+***def make_prediction(self, x, tree):***
 
 The make_prediction function is used within the predict function. It uses the Decision Tree structure and evaluates a single data point against the nodes of the tree. It compares the feature values with the nodes and finds the correct root through the tree. Finally, it finds the predicted label when reaching the leaf note and returns it.
 
 The implementation of the Random Forest in scratch is now presented below. It should be mentioned that the Decision Tree programmed in scratch presented above is used to create the forest.
 
-**class RandomForest():**
+***class RandomForest():***
 
 The class RandomForest is used to build a Random Forest model. It is implemented from scratch and creates Decision Trees that are, as described above, implemented inin scratch as well. The RandomForest class uses parameters like n_trees to describe the number of trees within the decision forest. Furthermore, it uses the parameters like max_depth and min_datas_branching which are necessary to create a Decision Tree. Furthermore, it contains a parameter which describes the number of features in the dataset and another which contains all trees in an array.
 
-**def fit(self, X, y):**
+***def fit(self, X, y):***
 
 The Random Forest gets trained by the function fit. It creates multiple Decision Trees for the forest. When creating the Decision Tree, it uses the functions that are explained in the Decision Tree class section. After the creation of the individual Decision Trees the function samples are going to be used to create a diverse subset for the input data of each tree. This way, the Random Forest model has a higher variability among a tree which leads to more robustness and a higher predictive performance.
 
-**def samples(self, X, y):**
+***def samples(self, X, y):***
 
 After each Decision Tree is created, the function samples create different training datasets for each tree. These datasets are created randomly out of the given dataset. This way, unique training datasets are created which leads to individual training of the trees.
 
-**def identify_most_common(self, y):**
+***def identify_most_common(self, y):***
 
 This function detects the most frequently occurring label within a set of labels. These labels are created by all of the Decision Trees in the Random Forest. The most common label will be returned.
 
-**def predict(self, X):**
+***def predict(self, X):***
 
 With the predict function, the created Random Forest model will be used to predict the label of a given test dataset. The data will run through all created Decision Trees in the forest. Each Decision Tree will predict the label of the data. Using the predictions of all trees, the most common predicted label is going to be taken as the final predicted label.
 
