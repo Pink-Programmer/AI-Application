@@ -49,23 +49,23 @@ The project focuses on the prediction of stock prices with the help of Decision 
 These are the features of the original dataset:
 Date - Includes the year, month, and day in that order (YYYY-MM-DD)
 
-Open - This is the opening price of the day.
+**Open** - This is the opening price of the day.
 
-High - The highest price of the day.
+**High** - The highest price of the day.
 
-Low - The lowest price of the day.
+**Low** - The lowest price of the day.
 
-Close - This is the closing price of the day.
+**Close** - This is the closing price of the day.
 
-Volume – The total number of shares traded in the day.
+**Volume** – The total number of shares traded in the day.
 
-Adj Close - This means the adjusted closing price of the day. It’s adjusted to better reflect the stock’s value after anything such as corporate actions would affect the stock price after the market closes. However, this was taken out for consistency reasons.
+**Adj Close** - This means the adjusted closing price of the day. It’s adjusted to better reflect the stock’s value after anything such as corporate actions would affect the stock price after the market closes. However, this was taken out for consistency reasons.
 
 ### B.	Modified Dataset and Features
 
 The dataset is extended with modified data to make the dataset bigger and create more data for the AI to train on. With the additional created data, possible patterns and relationship between different information will be recognized by the AI. In the following it is described how the data is going to be modified and extended.
 
-Slope/rate of change - It is calculated using the formula below. The purpose is to train the AI to consider the influence that stock prices on the days prior have on that of the present day. This helps the AI recognize certain patterns happening in the given datasets. For instance, when calculating the rate of change for the opening price, y2 would be the opening price of the current day, y1 would be the previous day’s opening price, and x2 - x1 would be the number of days. The slope is calculated as follows:
+**Slope/rate of change** - It is calculated using the formula below. The purpose is to train the AI to consider the influence that stock prices on the days prior have on that of the present day. This helps the AI recognize certain patterns happening in the given datasets. For instance, when calculating the rate of change for the opening price, y2 would be the opening price of the current day, y1 would be the previous day’s opening price, and x2 - x1 would be the number of days. The slope is calculated as follows:
 
 <img width="127" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/49468231/6220c6b2-86d9-48d2-9981-e8f06d84c233">
 
@@ -75,21 +75,21 @@ This calculation would be repeated based on the fixed number of days. The follow
 
 Figure 1 - Calculation of the slope
 
-Average slope - Using the outcome of the calculation of the slopes, the average of those single slopes can be calculated, allowing one to determine whether the price will rise or fall. If the number is positive, the value increases. If the number is negative, the value falls.
+**Average slope** - Using the outcome of the calculation of the slopes, the average of those single slopes can be calculated, allowing one to determine whether the price will rise or fall. If the number is positive, the value increases. If the number is negative, the value falls.
 
-Number of rises and falls - In this new feature, the individual calculated slopes are taken into account again. The number of slopes with a positive or negative sign are counted. This means that the number of times the share price rises or falls in a certain time frame is counted. In this way, it is intended that the artificial intelligence in this work may be able to recognize patterns of behavior on the stock market in order to predict the further course. In the following illustration, the rising and falling of the price is shown with arrows.
+**Number of rises and falls** - In this new feature, the individual calculated slopes are taken into account again. The number of slopes with a positive or negative sign are counted. This means that the number of times the share price rises or falls in a certain time frame is counted. In this way, it is intended that the artificial intelligence in this work may be able to recognize patterns of behavior on the stock market in order to predict the further course. In the following illustration, the rising and falling of the price is shown with arrows.
 
 ![image](https://github.com/Pink-Programmer/AI-Application/assets/148310919/7d0bd5ee-3c3b-4d2f-9b3e-28571ab5d420)
 
 Figure 2 - Stock price changes based on slope
 
-Difference between High and Low - Here the difference between the High and Low prices are calculated. This is done for the current day and all past days within a certain time frame. The difference shows how much the price fluctuates within a day. This is intended to illustrate further behavior in the stock market in order to identify certain patterns.
+**Difference between High and Low** - Here the difference between the High and Low prices are calculated. This is done for the current day and all past days within a certain time frame. The difference shows how much the price fluctuates within a day. This is intended to illustrate further behavior in the stock market in order to identify certain patterns.
 
-Average difference between High and Low - The average difference between High and Low is calculated. This summarizes whether the difference in the days is generally high.
+**Average difference between High and Low** - The average difference between High and Low is calculated. This summarizes whether the difference in the days is generally high.
 
-Difference between Open and Close – Here the difference between the Open and Close prices are calculated. This gives us more information on the stability of the price. This is intended to provide further insight that may be useful in exploring patterns for artificial intelligence.
+**Difference between Open and Close** – Here the difference between the Open and Close prices are calculated. This gives us more information on the stability of the price. This is intended to provide further insight that may be useful in exploring patterns for artificial intelligence.
 
-Average difference between Open and Close - Similar to the High and Low values, the average difference between Open and Close is also calculated here over a specific time window.
+**Average difference between Open and Close** - Similar to the High and Low values, the average difference between Open and Close is also calculated here over a specific time window.
 
 ### C.	Creating a label
 
@@ -129,11 +129,11 @@ Figure 4 - The structure of a Decision Tree
 
 A Decision Tree consists of the following basic components:
 
-Root node – starting (top) node with all data points
+**Root node** – starting (top) node with all data points
 
-Decision node(s) – nodes with condition(s) to split data
+**Decision node(s)** – nodes with condition(s) to split data
      
-Leaf nodes – nodes with ideally only data points of a single class
+**Leaf nodes** – nodes with ideally only data points of a single class
 
 Starting from the root node, the Decision Tree classifier decides on the most optimal way to split the dataset into subsets. There are conditions in the decision nodes for splitting the data. Based on the conditions, the data is distributed to two or more branches. For example, a threshold can be used as a possible condition with which the features in the dataset are compared. The value of the threshold is random at the beginning and is adjusted during training. Optimal conditions are achieved during training with the highest possible information gain.
 
@@ -285,23 +285,23 @@ IV.	EVALUATION AND ANALYSIS
 
 Various tests are carried out to analyze the quality of the predictions and the behavior of the Decision Tree and the Random Forest for stock performance and to determine whether this method is suitable. The tests are carried out in different variants based on the following aspects.
 
-a)	Decision Tree vs. Random Forest:
+a)	**Decision Tree vs. Random Forest:**
 On the one hand, the behavior of the predictions is compared based on the use of a Decision Tree and Random Forest.
 
-b)	Forecast for a specific time in the future:
+b)	**Forecast for a specific time in the future:**
 The model is tested for a prediction of the stock price performance in 10 and 20 days. The past 10 days are taken into account for the creation of the modified features. 
 
-c)	Different versions of the dataset:
+c)	**Different versions of the dataset:**
 Each model is tested on different versions of the dataset. Three different types of datasets are used in this project. Firstly, training takes place with the dataset that only contains the original features. Then the dataset is used with all the modified features created. The number of features can be large depending on the parameters from b). For this reason, a compressed version of the dataset is then used for training, which, regarding the created slopes, only considers the average value. This compromises the number of features from 221 to 21.
 
-d)	Demonstration of the models created by scratch:
+d)	**Demonstration of the models created by scratch:**
 The Decision Tree and Random Forest created in scratch in this project is run for demonstration with the compromised dataset for the prediction of the stock performance in 10 days.
 
 Based on the different variations, a total of 16 different models are created and then compared. However, these parameters are fixed in every model:
 
--	Min samples split =5
+-	Min samples split = 5
   
--	Max depth of a tree =10
+-	Max depth of a tree = 10
   
 -	Number of trees in the forest = 10
 
