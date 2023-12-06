@@ -374,8 +374,8 @@ The AUC is a metric ranging from 0 to 1. A value of 0 suggests that all positive
 
 ---
 
-### E.	Results
-
+V.	RESULTS
+---
 <img width="500" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/1c562e7c-8a56-463c-b1e7-ab55e5980bb4">
 
 Table 1 - The accuracies of the models
@@ -400,13 +400,13 @@ Figure 12 - ROC curve: trained with all features
 
 For most models, a prediction of the stock price at a later date is of higher quality. However, it is noticeable that the predictions lose quality when training with all features and t = 20. In comparison, the quality of the predictions increases significantly when training with compromised features and t = 20.
 
-V.	RELATED WORKS
+VI.	RELATED WORKS
 ---
 In a recent study, Sadorsky (2021) employed the Random Forests method to forecast cleaning energy stock prices. The study's results demonstrated a remarkable level of accuracy, with a prediction rate of over 80% for a 10-day forecast and an even more impressive 90% for a 20-day forecast. Modifying the dataset can have an impact on the accuracy of the model. Multiple widely recognized technical indicators are used as features, such as moving average cross-over divergence (MACD), relative strength indicator (RSI), stochastic oscillator (slow, fast), price rate of change (ROC), and advance-decline line (ADX) (Sadorsky, 2021). These features are similar to those created as part of this project work. However, they differ in terms of the calculation and the type of display. For example, the change in the file price is shown in both datasets. However, in this project this is done as a gradient, whereas in the study the percentage change is taken into account.
 
 In another project, the future performance of the S&P 500 stock was predicted. Here, the prediction focused only on the values that were already available in the dataset and used these as the only features. The features are similar features that reflect, for example, open, close, high, low, etc. Here, an accuracy of 57% was achieved. The large difference in the accuracy values is possibly due to the feature extraction, which was not carried out in this case.
 
-VI.	CONCLUSION
+VII.	CONCLUSION
 --
 In this project, artificial intelligence is used to predict whether the price of a share will rise or fall in the near future. Based on the analyses and tests carried out in the previous chapters, it becomes clear that the realization and quality of the models subsequently created depend on various points.
 
