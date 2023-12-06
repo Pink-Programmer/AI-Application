@@ -284,6 +284,100 @@ With the predict function, the created Random Forest model will be used to predi
 
 -------
 
+IV.	EVALUATION AND ANALYSIS
+---
+A.	Concept for analysing the model
 
+Various tests are carried out to analyze the quality of the predictions and the behavior of the Decision Tree and the Random Forest for stock performance and to determine whether this method is suitable. The tests are carried out in different variants based on the following aspects.
+
+a)	Decision Tree vs. Random Forest:
+On the one hand, the behavior of the predictions is compared based on the use of a Decision Tree and Random Forest.
+
+b)	Forecast for a specific time in the future:
+The model is tested for a prediction of the stock price performance in 10 and 20 days. The past 10 days are taken into account for the creation of the modified features. 
+
+c)	Different versions of the dataset:
+Each model is tested on different versions of the dataset. Three different types of datasets are used in this project. Firstly, training takes place with the dataset that only contains the original features. Then the dataset is used with all the modified features created. The number of features can be large depending on the parameters from b). For this reason, a compressed version of the dataset is then used for training, which, regarding the created slopes, only considers the average value. This compromises the number of features from 221 to 21.
+
+d)	Demonstration of the models created by scratch:
+The Decision Tree and Random Forest created in scratch in this project is run for demonstration with the compromised dataset for the prediction of the stock performance in 10 days.
+
+Based on the different variations, a total of 16 different models are created and then compared. However, these parameters are fixed in every model:
+
+-	Min samples split =5
+  
+-	Max depth of a tree =10
+  
+-	Number of trees in the forest = 10
+
+----
+
+B.	Analyzis of the dataset
+
+Before the dataset is used to train an artificial intelligence, it is first analyzed. The analysis is used to determine whether the dataset is suitable for classification and whether certain features have dependencies with regard to classification. A table with a large number of two-dimensional coordinate systems is created to analyze the dataset. In each coordinate system, two features are compared with each other by assigning them an axis and drawing data points based on them, which are colored differently according to their labels. If the differently colored data points are visibly separated in the coordinate system, this indicates that the respective features have a high significance in terms of classification. In addition, a graph is created for each feature, which shows the distribution of the data points according to their labels. A graph in the corresponding color is generated for each label. The more the distributions differ, the more meaningful the features are for classification.
+
+Figure 7 shows the analysis of the dataset without modified features. A larger figure can be found in the appendix.
+
+<img width="246" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/21419272-d8cf-4a34-b4b9-9bd7c151ad42">
+
+Figure 7 - The analysis of the dataset without modified features
+
+Figure 7 shows that none of the features is highly significant for a clear classification.  On the one hand, the data points cannot be grouped by their labels. On the other hand, the created graphs overlap and do not show any differentiation.
+
+Figure 8 shows the analysis of the dataset that was expanded with the modified features. This is an excerpt. The entire figure can be found in the appendix. In this case, it is noticeable that some of the data points are better grouped in the coordinate systems. This indicates a higher significance of the features in the classification of data points. In addition, a difference can be seen between some of the graphs created. 
+
+<img width="229" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/b94256b4-113e-451b-ad86-a74876d18b37">
+
+Figure 8 - The analysis of the dataset that was expanded with the modified features
+
+Based on the analyzed datasets, it is now possible to forecast the behavior of the model's prediction quality based on the dataset used in the training.
+
+---
+
+C.	AI Methodology Selection
+Based on the analysis of data, the selection of Decision Tree and Random Forest is justified in this chapter. Due to the grouped distribution of data points in their labels, most data points are spatially separable. Under these circumstances, Random Forests are well suited. As this model is based on the Decision Tree concept, this method is also considered in this thesis.
+
+
+----
+D.	Receiver operating characteristic
+The measure of a classification model’s performance at all classification thresholds can be visualized on a graph called the ROC Curve (receiver operating characteristic curve).
+
+The ROC Curve plots two parameters, True Positive rate (TPR) against False Positive rate (FPR), for all classification threshold values between 0 and 1. To understand TPR and FPR, the following key definitions from the Confusion Matrix are used:
+
+    True Positive (TP): positive cases successfully classified into the positive group. 
+                                      
+     False Positive (FP): negative cases incorrectly classified into the positive group. 
+                                       
+    True Negative (TN): negative cases successfully classified into the negative group.
+                                       
+    False Negative (FN): positive cases incorrectly classified into the negative group.
+
+The TPR is the measure of percentage of positive cases correctly distinguished out of all positive cases, given by the following formula: 
+
+
+TPR=TP/(TP + FN)
+
+
+FPR, on the other hand, is the measure of percentage of negative cases incorrectly distinguished out of all negative cases, given by the following formula: 
+
+
+FPR=FP/(FP + TN)
+
+
+With the ROC Curve, reading the AUC (2D area under the ROC Curve) provides us insight on the ability of the binary classifier to separate between classes. 
+
+<img width="241" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/35f300a1-fbfc-4d4f-a35a-c5bdbb902aa4">
+
+Figure 9 - The ROC Curve
+
+The AUC is a metric ranging from 0 to 1. A value of 0 suggests that all positive and negative instances are completely misclassified, while a value of 1 signifies perfect classification, where all instances are correctly placed in their respective classes. In the diagram above, the AUC is exactly 0.5, implying that the chance of a correct classification is only 50%, equivalent to that of a random coin flip. The ROC trending upwards and covering a larger AUC indicates better model performance, demonstrating an enhanced ability to accurately distinguish between positive and negative classes. On the other hand, a downward trend in the curve represents a worse performance of a model comparatively.
+
+---
+
+E.	Results
+
+<img width="244" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/1c562e7c-8a56-463c-b1e7-ab55e5980bb4">
+
+Table 1 - The accuracies of the models
 
 
