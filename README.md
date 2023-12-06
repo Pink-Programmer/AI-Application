@@ -68,7 +68,8 @@ The dataset is extended with modified data to make the dataset bigger and create
 
 Slope/rate of change - It is calculated using the formula below. The purpose is to train the AI to consider the influence that stock prices on the days prior have on that of the present day. This helps the AI recognize certain patterns happening in the given datasets. For instance, when calculating the rate of change for the opening price, y2 would be the opening price of the current day, y1 would be the previous day’s opening price, and x2 - x1 would be the number of days. The slope is calculated as follows:
 
-slope=(y_2-y_1)/(x_2-x_1 )
+<img width="77" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/49468231/e4691712-9ffa-44dc-a1ff-f1b9d2e7f88f">
+
 
 This calculation would be repeated based on the fixed number of days. The following figure illustrates the calculation of the slope.
 
