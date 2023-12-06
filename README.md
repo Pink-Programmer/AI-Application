@@ -837,16 +837,25 @@ This behavior leads to the conclusion that there is no perfect concept for creat
 VIII.	REFERENCES
 ---
 
-VIII. REFERENCES
 Bhandari, A. (2023, August 31). Analytics Vidhya. Retrieved November 14, 2023, from https://www.analyticsvidhya.com/blog/2020/06/auc-roc-curve-machine-learning/
+
 Caporal, J. (2023, November 01). The Motley Fool. Retrieved October 30, 2023, from https://www.fool.com/research/how-many-americans-own-stock/
+
 Dash, S. (2022, November 02). Medium. (T. D. Science, Editor) Retrieved November 14, 2023, from https://towardsdatascience.com/decision-trees-explained-entropy-information-gain-gini-index-ccp-pruning-4d78070db36c
+
 developers.google.com. (n.d.). developers.google.com. Retrieved November 2023, 14, from https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc?hl=de
+
 Donges, N. (2023, September 15). built in. Retrieved December 01, 2023, from https://builtin.com/data-science/random-forest-algorithm
+
 kaggle. (2020). kaggle. Retrieved October 15, 2023, from https://www.kaggle.com/datasets/timoboz/tesla-stock-data-from-2010-to-2020
+
 kaggle. (2022). kaggle. Retrieved November 14, 2023, from https://www.kaggle.com/datasets/ranugadisansagamage/samsung-stocks
+
 kaggle. (2022). kaggle. Retrieved October 25, 2023, from https://www.kaggle.com/datasets/amirmotefaker/twitter-stock-market-dataset
+
 Narkhede, S. (2018, June 17). Medium. (T. D. Science, Editor) Retrieved November 14, 2023, from https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5
+
 Sadorsky, P. (2021). MDPI. Retrieved November 14, 2023, from https://www.mdpi.com/1911-8074/14/2/48
+
 VikParuchuri. (2023, December 01). GitHub. Retrieved from https://github.com/dataquestio/project-walkthroughs/tree/master/sp_500
 
