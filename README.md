@@ -343,15 +343,11 @@ The ROC Curve plots two parameters, True Positive rate (TPR) against False Posit
 
 The TPR is the measure of percentage of positive cases correctly distinguished out of all positive cases, given by the following formula: 
 
-
-TPR=TP/(TP + FN)
-
+<img width="135" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/49468231/4676008f-ced5-42aa-a43e-279b6d883c29">
 
 FPR, on the other hand, is the measure of percentage of negative cases incorrectly distinguished out of all negative cases, given by the following formula: 
 
-
-FPR=FP/(FP + TN)
-
+<img width="138" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/49468231/1a0c36c3-f387-49a3-ac8d-0eecdf32c7fc">
 
 With the ROC Curve, reading the AUC (2D area under the ROC Curve) provides us insight on the ability of the binary classifier to separate between classes. 
 
