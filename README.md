@@ -110,6 +110,25 @@ Several functions were declared for the realization of the project and subsequen
 ***def combine_data(trade_datas):***
 
 This function is used to merge different datasets. A list of DataFrames is passed, which are combined into one at the end. Since datasets from different companies are used in this project, it is necessary to merge them in a standardized way.
+```
+
+def combine_data(trade_datas):
+    #chekcing if trade_data is empty
+    if len(trade_datas) == 0:
+        return None
+    
+    #Retrieve columns of the first DataFrame in the list as reference columns
+    ref_columns = list(trade_datas[0].columns)
+
+    #ckecking if column features are matching
+    for data in trade_datas[1:]:
+        if list(data.columns) != ref_columns:
+            raise ValueError("Wrong coloumn order")
+    
+    #create one DataFrame from combined data
+    combined_data = pd.concat(trade_datas, ignore_index=True)
+    return combined_data
+    ```
 
 ***def modify_data(trade_data,t_previous_days, t_label_days, comprimize_data):***
 
