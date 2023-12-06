@@ -10,9 +10,9 @@ of each day of the share are shown in the dataset. The training will be done wit
 technique. Depending on the result of the training, if necessary, the dataset will be expanded or the 
 model will be compared with another technique in the field of artificial intelligence.
 
---------
-I.	INTRODUCTION
 
+I.	INTRODUCTION
+---
 
 The stock market is a dynamic system that presents the economic well-being of companies. Investors and market participants tend to make decisions based on the traditional econometric models and technical analysis indicators. Due to the complexity of the past performance of the stock, the accuracy of the traditional method is not highly reliable. This uncertainty and the unpredictability of the stock market means investors might face serious financial risks in optimizing their investment strategy. 61% of Americans own stock because they are more open to buying stock (Caporal, 2023). There is a need for a sophisticated and data-driven solution that can provide more reliable and actionable predictions.
 
@@ -20,9 +20,9 @@ In this project, an AI model is proposed to predict the stock market trend and t
 
 By providing more accurate and reliable predictions, this model can help investors make informed investment decisions, optimize portfolio management strategies, and mitigate financial risks. Financial institutions can benefit from improved risk assessment and asset allocation, leading to enhanced profitability and stability. Moreover, a more precise understanding of market trends can contribute to overall market efficiency and investor confidence. 
 
----------------------------------------------------------------------------------
-II.	DATASET
 
+II.	DATASET
+---
 
 This chapter describes the datasets that were used for the realization of this project.
 
@@ -38,9 +38,9 @@ C.	TWITTER Stock Dataset (TWTR)
 
 The TWITTER dataset was chosen to be used because of its interesting history. Due to Elon Musk’s purchase of Twitter back in 2022, it became a private company, was delisted from the New York exchange, and is no longer in the stock market. This dataset contains Twitter’s history on the stock market from November 7, 2013 - October 27, 2022. The prices are also based on USD. It’s also modified as described in the TESLA Stock Dataset description.
 
---------------------------------------------
-III.	METHODOLOGY
 
+III.	METHODOLOGY
+---
 The project focuses on the prediction of stock prices with the help of Decision Tree and Random Forest. The selection of these artificial intelligence methods is based on the analysis of the dataset and the conclusion which model is suitable in this case. This is discussed in chapter IV in more detail. This chapter refers to the general methodology of implementation.
 
 
@@ -61,6 +61,7 @@ Volume – The total number of shares traded in the day.
 
 Adj Close - This means the adjusted closing price of the day. It’s adjusted to better reflect the stock’s value after anything such as corporate actions would affect the stock price after the market closes. However, this was taken out for consistency reasons.
 
+---
 B.	Modified Dataset and Features
 
 The dataset is extended with modified data to make the dataset bigger and create more data for the AI to train on. With the additional created data, possible patterns and relationship between different information will be recognized by the AI. In the following it is described how the data is going to be modified and extended.
@@ -170,3 +171,119 @@ Once the best possible condition based on the highest information gain has been 
 As soon as the stop conditions are met, a leaf node is created instead of a decision node. The leaf node determines the class affiliation of the respective root in the Decision Tree.
 
 After the Decision Tree has been created, a data point is classified based on the conditions of the decision nodes. Depending on the condition, a specific branch in the Decision Tree is followed. The leaf node that is reached at the end determines the predicted class. The following image shows how a class of a data point is determined.
+
+<img width="246" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/13a0d9c2-df45-4810-84af-4807b932d398">
+
+Figure 5 - The process of prediction with a Decision Tree
+
+G.	Function of a Random Forest
+
+The Random Forest algorithm is an enhanced version of the Decision Tree classification model, making use of a collection of multiple Decision Trees. Decision Trees are highly sensitive to the training dataset and any modification to the training data can result in an entirely different Decision Tree. Random Forest can reduce the sensitivity towards the training data through generalization.
+
+<img width="246" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/e7d3c84d-1923-495c-973d-e4edee19a098">
+
+Figure 6 - The function of a Random Forest
+
+A Random Forest consists of several Decision Trees that are created independently of each other. Bootstrapping is used to train the trees. Bootstrapping is a process in which random data points are taken from the dataset for training for each of the trees, so that each of the trees is trained with different datasets, increasing the versatility of the forest. It can happen that the same data point occurs in several training datasets. It is also possible that the random selection means that certain data points do not appear in any tree in the training data. Bootstrapping prevents the use of the same dataset in the training process, reducing the sensitivities of trees towards the original dataset. Limiting the random feature selection reduces the correlation between trees, as trees are trained with a variety of decision nodes, hence increasing the variance in prediction outcomes.
+
+To merge the predictions of all trees and create a single prediction of the Random Forest, an aggregation is performed. To make a prediction using Random Forest, the data point is passed through each tree to get prediction outputs from every tree. The final decision is then made through majority voting of all predicted outcomes. The structure of a Random Forest is shown in figure 6.
+
+H.	Implementation of the code to create the model
+
+In this project, the Decision Tree and Random Forest are both created with the library sklearn and programmed from scratch. As the models are each trained and compared with different parameters, functions are defined for the executions. The following functions have been created to summarize all the individual steps involved in creating the respective models. The general procedure of the functions is very similar. To execute the function, a previously modified dataset is provided. Firstly, the dataset is split into test and training data. Then the model is created and trained with the training data. At the end, the trained model is tested with the test data and a value for accuracy is created. At the end, the model, the predictions made during testing, the labels and the accuracy are returned. The declared functions of the respective models are presented in the following.
+
+def run_decision_tree_classifier_by_sklearn(modified_ trade_data)
+
+This function is about the creation of a Decision Tree classifier with the help of the module of the sklearn library. The following function by sklearn is used: DecisionTreeClassifier(max_depth=10,min_samples_split=5)
+
+def run_random_forest_classifier_by_sklearn(modified_ trade_data):
+
+This function is about the creation of a Random Forest classifier with the help of the module of the sklearn library. The following function by sklearn is used: RandomForestClassifier(n_estimators=10, random_state=42,max_depth=10, min_samples_split=5)
+
+def run_decision_tree_from_scratch(modified_trade_ data)
+
+This function involves the creation of a Decision Tree classifier whose algorithm was implemented within the scope of this project. The exact algorithm will be explained in more detail later.
+
+def run_random_forest_from_scratch(modified_trade_ data)
+
+This function involves the creation of a Random Forest classifier whose algorithm was implemented within the scope of this project. The exact algorithm will be explained in more detail later.
+
+The implementation from scratch is described below, starting with the Decision Tree.
+
+class Tree_Node():
+
+The class Tree_Node represents a Node in a Decision Tree. It contains information about the splitting of the tree including the feature index, a threshold, and a subtree. Additionally, it contains the information gain resulting from the splitting of a tree. Furthermore, it contains the label if it is a leaf node.
+
+class DecisionTree():
+
+The DecisionTree class represents a Decision Tree classifier which is implemented from scratch in the purpose of this project. It contains the parameters like min_datas_branching and max_depth which describe how often a tree will be split and the maximum depth of the split. Furthermore, it contains the roots of the previous branches.
+
+def create_tree(self, dataset, curr_depth=0)
+
+The function create_tree builds a Decision Tree recursively based on the given dataset. It uses values like min_datas_branching and max_depth as conditional values to decide whether conditions are met to calculate the best split and build another subtree recursively. If the conditions aren't met, a leaf node will be created.
+
+def get_best_branching(self, dataset, number_of_datas, number_of_features)
+
+This method searches for the best split in a Decision Tree based on the dataset. It iterates through the features and their possible thresholds to calculate the best branching. 
+
+It calculates the potential threshold for every feature, divides the dataset and calculates the information gain using whether the Gini index or the entropy. It updates the dictionary of the best branching based on the highest possible improvement in the information gain value.
+
+def branch_tree(self, dataset, feature_index, threshold)
+
+The function branch_tree divides a dataset based on a feature and a threshold. It creates two arrays in which the data smaller or bigger than the thresholds are separated.
+
+def information_gain(self, parent, l_child, r_child, mode="entropy") 
+
+The information gain function is used to calculate the information gain after a splitting of a branch. For the calculation it uses either the Gini index or the entropy, determined by the 'mode' parameter.
+
+def entropy(self, y):   
+
+With the entropy function, disorders and randomness within a set of labels can be calculated. By examining the different types of labels and quantifying how unpredictable they are, it calculates the probability.
+
+def gini_index(self, y): 
+
+With the function Gini index, similar to the entropy function, the impurity or disorder is going to be measured. By iterating through the labels, it calculates the Gini index based on the probability of the occurrence of each of the labels. After applying a specific mathematical formula, it returns the Gini index.
+
+def calculate_leaf_value(self, label):
+
+The function calculate_leaf_value detects the label of a leaf note. It predicts the value by doing a majority voting of the labels that the leaf contains. The most frequent label will be returned as its label. 
+
+def fit(self, data, label):
+
+With the fit function, the Decision Tree is going to be trained. For this, the dataset and the labels are merged before using the function create_tree to establish the nodes.
+
+def predict(self, data):
+
+The predict function is used to create predictions based on the given dataset. It iterates through each data point and creates a prediction with the function make_prediction function. 
+
+def make_prediction(self, x, tree):
+
+The make_prediction function is used within the predict function. It uses the Decision Tree structure and evaluates a single data point against the nodes of the tree. It compares the feature values with the nodes and finds the correct root through the tree. Finally, it finds the predicted label when reaching the leaf note and returns it.
+
+The implementation of the Random Forest in scratch is now presented below. It should be mentioned that the Decision Tree programmed in scratch presented above is used to create the forest.
+
+class RandomForest():
+
+The class RandomForest is used to build a Random Forest model. It is implemented from scratch and creates Decision Trees that are, as described above, implemented inin scratch as well. The RandomForest class uses parameters like n_trees to describe the number of trees within the decision forest. Furthermore, it uses the parameters like max_depth and min_datas_branching which are necessary to create a Decision Tree. Furthermore, it contains a parameter which describes the number of features in the dataset and another which contains all trees in an array.
+
+def fit(self, X, y):
+
+The Random Forest gets trained by the function fit. It creates multiple Decision Trees for the forest. When creating the Decision Tree, it uses the functions that are explained in the Decision Tree class section. After the creation of the individual Decision Trees the function samples are going to be used to create a diverse subset for the input data of each tree. This way, the Random Forest model has a higher variability among a tree which leads to more robustness and a higher predictive performance.
+
+def samples(self, X, y):
+
+After each Decision Tree is created, the function samples create different training datasets for each tree. These datasets are created randomly out of the given dataset. This way, unique training datasets are created which leads to individual training of the trees.
+
+def identify_most_common(self, y):
+
+This function detects the most frequently occurring label within a set of labels. These labels are created by all of the Decision Trees in the Random Forest. The most common label will be returned.
+
+def predict(self, X):
+
+With the predict function, the created Random Forest model will be used to predict the label of a given test dataset. The data will run through all created Decision Trees in the forest. Each Decision Tree will predict the label of the data. Using the predictions of all trees, the most common predicted label is going to be taken as the final predicted label.
+
+-------
+
+
+
+
