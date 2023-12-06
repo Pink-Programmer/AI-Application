@@ -343,13 +343,13 @@ The measure of a classification model’s performance at all classification thre
 
 The ROC Curve plots two parameters, True Positive rate (TPR) against False Positive rate (FPR), for all classification threshold values between 0 and 1. To understand TPR and FPR, the following key definitions from the Confusion Matrix are used:
 
-True Positive (TP): positive cases successfully classified into the positive group. 
+- True Positive (TP): positive cases successfully classified into the positive group. 
                                       
-False Positive (FP): negative cases incorrectly classified into the positive group. 
+- False Positive (FP): negative cases incorrectly classified into the positive group. 
                                        
-True Negative (TN): negative cases successfully classified into the negative group.
+- True Negative (TN): negative cases successfully classified into the negative group.
                                        
-False Negative (FN): positive cases incorrectly classified into the negative group.
+- False Negative (FN): positive cases incorrectly classified into the negative group.
 
 The TPR is the measure of percentage of positive cases correctly distinguished out of all positive cases, given by the following formula: 
 
