@@ -1,4 +1,4 @@
-# AI-Application
+![image](https://github.com/Pink-Programmer/AI-Application/assets/117917016/83a58923-ace9-4863-bb92-91035ba83975)# AI-Application
 Group Assignment: Stock market prediction
 
 
@@ -30,15 +30,15 @@ This chapter describes the datasets that were used for the realization of this p
 
 ### A.	TESLA Stock Dataset (TSLA)
 
-The TESLA dataset includes approx. 10 years of the TSLA stock data from June 29, 2010 - February 3, 2020. The original dataset was slightly modified removing Adj Close for consistency reasons. Hence, the features that are included in the modified dataset are as follows: Date, Open, High, Low, Close, Volume, and Rate of Change. The prices are based on USD.
+The TESLA dataset includes approx. 10 years of the TSLA stock data from June 29, 2010 - February 3, 2020. The original dataset was slightly modified removing Adj Close for consistency reasons. Hence, the features that are included in the modified dataset are as follows: Date, Open, High, Low, Close, Volume, and Rate of Change. The prices are based on USD (kaggle, Tesla stock data from 2010 to 2020, 2020).
 
 ### B.	SAMSUNG Stock Dataset (SSNLF)
 
-The SAMSUNG dataset includes decades of SSNLF stock data from January 4, 2000 - May 23, 2022. The prices are also based on USD. It’s also modified as described in the TESLA Stock Dataset description.
+The SAMSUNG dataset includes decades of SSNLF stock data from January 4, 2000 - May 23, 2022. The prices are also based on USD. It’s also modified as described in the TESLA Stock Dataset description (kaggle, Samsung Stocks, 2022).
 
 ### C.	TWITTER Stock Dataset (TWTR)
 
-The TWITTER dataset was chosen to be used because of its interesting history. Due to Elon Musk’s purchase of Twitter back in 2022, it became a private company, was delisted from the New York exchange, and is no longer in the stock market. This dataset contains Twitter’s history on the stock market from November 7, 2013 - October 27, 2022. The prices are also based on USD. It’s also modified as described in the TESLA Stock Dataset description.
+The TWITTER dataset was chosen to be used because of its interesting history. Due to Elon Musk’s purchase of Twitter back in 2022, it became a private company, was delisted from the New York exchange, and is no longer in the stock market. This dataset contains Twitter’s history on the stock market from November 7, 2013 - October 27, 2022. The prices are also based on USD. It’s also modified as described in the TESLA Stock Dataset description (kaggle, Twitter Stock Market Dataset, 2022).
 
 
 III.	METHODOLOGY
@@ -264,7 +264,7 @@ A Decision Tree classifier is a machine learning algorithm that can be used for 
 
 <img width="500" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/456a947d-60e9-48fa-88c6-26c6ef6e97b9">
 
-Figure 4 - The structure of a Decision Tree
+Figure 4 - The structure of a Decision Tree referring to (Dash, 2022)
 
 A Decision Tree consists of the following basic components:
 
@@ -306,11 +306,11 @@ Once the best possible condition based on the highest information gain has been 
 
 As soon as the stop conditions are met, a leaf node is created instead of a decision node. The leaf node determines the class affiliation of the respective root in the Decision Tree.
 
-After the Decision Tree has been created, a data point is classified based on the conditions of the decision nodes. Depending on the condition, a specific branch in the Decision Tree is followed. The leaf node that is reached at the end determines the predicted class. The following image shows how a class of a data point is determined.
+After the Decision Tree has been created, a data point is classified based on the conditions of the decision nodes. Depending on the condition, a specific branch in the Decision Tree is followed. The leaf node that is reached at the end determines the predicted class (Dash, 2022). The following image shows how a class of a data point is determined.
 
 <img width="500" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/13a0d9c2-df45-4810-84af-4807b932d398">
 
-Figure 5 - The process of prediction with a Decision Tree
+Figure 5 - The process of prediction with a Decision Tree referring to (Dash, 2022)
 
 ### G.	Function of a Random Forest
 
@@ -318,11 +318,11 @@ The Random Forest algorithm is an enhanced version of the Decision Tree classifi
 
 <img width="500" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/e7d3c84d-1923-495c-973d-e4edee19a098">
 
-Figure 6 - The function of a Random Forest
+Figure 6 - The function of a Random Forest referred to (Donges, 2023)
 
 A Random Forest consists of several Decision Trees that are created independently of each other. Bootstrapping is used to train the trees. Bootstrapping is a process in which random data points are taken from the dataset for training for each of the trees, so that each of the trees is trained with different datasets, increasing the versatility of the forest. It can happen that the same data point occurs in several training datasets. It is also possible that the random selection means that certain data points do not appear in any tree in the training data. Bootstrapping prevents the use of the same dataset in the training process, reducing the sensitivities of trees towards the original dataset. Limiting the random feature selection reduces the correlation between trees, as trees are trained with a variety of decision nodes, hence increasing the variance in prediction outcomes.
 
-To merge the predictions of all trees and create a single prediction of the Random Forest, an aggregation is performed. To make a prediction using Random Forest, the data point is passed through each tree to get prediction outputs from every tree. The final decision is then made through majority voting of all predicted outcomes. The structure of a Random Forest is shown in figure 6.
+To merge the predictions of all trees and create a single prediction of the Random Forest, an aggregation is performed. To make a prediction using Random Forest, the data point is passed through each tree to get prediction outputs from every tree. The final decision is then made through majority voting of all predicted outcomes. The structure of a Random Forest is shown in figure 6 (Donges, 2023). 
 
 ### H.	Implementation of the code to create the model
 
@@ -790,9 +790,9 @@ With the ROC Curve, reading the AUC (2D area under the ROC Curve) provides us in
 
 <img width="500" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/35f300a1-fbfc-4d4f-a35a-c5bdbb902aa4">
 
-Figure 9 - The ROC Curve
+Figure 9 - The ROC Curve (Narkhede, 2018)
 
-The AUC is a metric ranging from 0 to 1. A value of 0 suggests that all positive and negative instances are completely misclassified, while a value of 1 signifies perfect classification, where all instances are correctly placed in their respective classes. In the diagram above, the AUC is exactly 0.5, implying that the chance of a correct classification is only 50%, equivalent to that of a random coin flip. The ROC trending upwards and covering a larger AUC indicates better model performance, demonstrating an enhanced ability to accurately distinguish between positive and negative classes. On the other hand, a downward trend in the curve represents a worse performance of a model comparatively.
+The AUC is a metric ranging from 0 to 1. A value of 0 suggests that all positive and negative instances are completely misclassified, while a value of 1 signifies perfect classification, where all instances are correctly placed in their respective classes. In the diagram above, the AUC is exactly 0.5, implying that the chance of a correct classification is only 50%, equivalent to that of a random coin flip. The ROC trending upwards and covering a larger AUC indicates better model performance, demonstrating an enhanced ability to accurately distinguish between positive and negative classes. On the other hand, a downward trend in the curve represents a worse performance of a model comparatively (developers.google.com, kein Datum) (Narkhede, 2018).
 
 V.	RESULTS
 ---
@@ -824,7 +824,7 @@ VI.	RELATED WORKS
 ---
 In a recent study, Sadorsky (2021) employed the Random Forests method to forecast cleaning energy stock prices. The study's results demonstrated a remarkable level of accuracy, with a prediction rate of over 80% for a 10-day forecast and an even more impressive 90% for a 20-day forecast. Modifying the dataset can have an impact on the accuracy of the model. Multiple widely recognized technical indicators are used as features, such as moving average cross-over divergence (MACD), relative strength indicator (RSI), stochastic oscillator (slow, fast), price rate of change (ROC), and advance-decline line (ADX) (Sadorsky, 2021). These features are similar to those created as part of this project work. However, they differ in terms of the calculation and the type of display. For example, the change in the file price is shown in both datasets. However, in this project this is done as a gradient, whereas in the study the percentage change is taken into account.
 
-In another project, the future performance of the S&P 500 stock was predicted. Here, the prediction focused only on the values that were already available in the dataset and used these as the only features. The features are similar features that reflect, for example, open, close, high, low, etc. Here, an accuracy of 57% was achieved. The large difference in the accuracy values is possibly due to the feature extraction, which was not carried out in this case.
+In another project, the future performance of the S&P 500 stock was predicted. Here, the prediction focused only on the values that were already available in the dataset and used these as the only features. The features are similar features that reflect, for example, open, close, high, low, etc. Here, an accuracy of 57% was achieved. The large difference in the accuracy values is possibly due to the feature extraction, which was not carried out in this case (VikParuchuri, 2023).
 
 VII.	CONCLUSION
 ---
