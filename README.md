@@ -629,7 +629,6 @@ def predict(self, data):
 
 The make_prediction function is used within the predict function. It uses the Decision Tree structure and evaluates a single data point against the nodes of the tree. It compares the feature values with the nodes and finds the correct root through the tree. Finally, it finds the predicted label when reaching the leaf note and returns it.
 
-The implementation of the Random Forest in scratch is now presented below. It should be mentioned that the Decision Tree programmed in scratch presented above is used to create the forest.
 ```
 def make_prediction(self, x, tree):
         if tree.value!=None: return tree.value
@@ -641,25 +640,79 @@ def make_prediction(self, x, tree):
             return self.make_prediction(x, tree.branch_2)
 ```
 
+The implementation of the Random Forest in scratch is now presented below. It should be mentioned that the Decision Tree programmed in scratch presented above is used to create the forest.
+
 ***class RandomForest():***
 
 The class RandomForest is used to build a Random Forest model. It is implemented from scratch and creates Decision Trees that are, as described above, implemented inin scratch as well. The RandomForest class uses parameters like n_trees to describe the number of trees within the decision forest. Furthermore, it uses the parameters like max_depth and min_datas_branching which are necessary to create a Decision Tree. Furthermore, it contains a parameter which describes the number of features in the dataset and another which contains all trees in an array.
+```
+class RandomForest:
+    def __init__(self, n_trees, max_depth=10, min_datas_branching=5, n_feature=None):
+        """
+        Initializes the RandomForest model implemented from scratch.
+
+        Parameters:
+        n_trees (int): Number of trees in the random forest.
+        max_depth (int): Maximum depth of each decision tree.
+        min_datas_branching (int): Minimum number of data points required for branching.
+        n_feature (int): Number of features to consider for each tree.
+        """
+        self.n_trees = n_trees
+        self.max_depth=max_depth
+        self.min_datas_branching=min_datas_branching
+        self.n_features=n_feature
+        self.trees = []
+```
 
 ***def fit(self, X, y):***
 
 The Random Forest gets trained by the function fit. It creates multiple Decision Trees for the forest. When creating the Decision Tree, it uses the functions that are explained in the Decision Tree class section. After the creation of the individual Decision Trees the function samples are going to be used to create a diverse subset for the input data of each tree. This way, the Random Forest model has a higher variability among a tree which leads to more robustness and a higher predictive performance.
+```
+def fit(self, X, y):
+        self.trees = []
+        i = 0
+        for _ in range(self.n_trees):
+            # Create a decision tree and train it using a subset of the data
+            tree = DecisionTree(max_depth=self.max_depth,
+                            min_datas_branching=self.min_datas_branching)
+            X_sample, y_sample = self.samples(X, y)
+            tree.fit(X_sample, y_sample)
+            self.trees.append(tree)
+            i =+1
+            print(i, "/ 10 Trees finished")
+```
 
 ***def samples(self, X, y):***
 
 After each Decision Tree is created, the function samples create different training datasets for each tree. These datasets are created randomly out of the given dataset. This way, unique training datasets are created which leads to individual training of the trees.
+```
+def samples(self, X, y):
+        n_samples = X.shape[0]
+        label_samples = y.to_numpy()
+        index = np.random.choice(n_samples, size=n_samples, replace=True)
+        return X[index], label_samples[index]
+```
 
 ***def identify_most_common(self, y):***
 
 This function detects the most frequently occurring label within a set of labels. These labels are created by all of the Decision Trees in the Random Forest. The most common label will be returned.
+```
+def identify_most_common(self, y):
+        counter = Counter(y)
+        most_common_prediction = counter.most_common(1)[0][0]
+        return most_common_prediction
+```
 
 ***def predict(self, X):***
 
 With the predict function, the created Random Forest model will be used to predict the label of a given test dataset. The data will run through all created Decision Trees in the forest. Each Decision Tree will predict the label of the data. Using the predictions of all trees, the most common predicted label is going to be taken as the final predicted label.
+```
+def predict(self, X):
+        predictions = np.array([tree.predict(X) for tree in self.trees])
+        tree_preds = np.swapaxes(predictions, 0, 1)
+        predictions = np.array([self.identify_most_common(pred) for pred in tree_preds])
+        return predictions
+```
 
 IV.	EVALUATION AND ANALYSIS
 ---
