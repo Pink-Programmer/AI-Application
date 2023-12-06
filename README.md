@@ -172,7 +172,7 @@ As soon as the stop conditions are met, a leaf node is created instead of a deci
 
 After the Decision Tree has been created, a data point is classified based on the conditions of the decision nodes. Depending on the condition, a specific branch in the Decision Tree is followed. The leaf node that is reached at the end determines the predicted class. The following image shows how a class of a data point is determined.
 
-<img width="246" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/13a0d9c2-df45-4810-84af-4807b932d398">
+<img width="500" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/13a0d9c2-df45-4810-84af-4807b932d398">
 
 Figure 5 - The process of prediction with a Decision Tree
 
@@ -180,7 +180,7 @@ G.	Function of a Random Forest
 
 The Random Forest algorithm is an enhanced version of the Decision Tree classification model, making use of a collection of multiple Decision Trees. Decision Trees are highly sensitive to the training dataset and any modification to the training data can result in an entirely different Decision Tree. Random Forest can reduce the sensitivity towards the training data through generalization.
 
-<img width="246" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/e7d3c84d-1923-495c-973d-e4edee19a098">
+<img width="500" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/e7d3c84d-1923-495c-973d-e4edee19a098">
 
 Figure 6 - The function of a Random Forest
 
@@ -390,7 +390,7 @@ Figure 10 - ROC curve: trained with the original features
 
 Comparing the results of the models with t = 10, which were trained with all or compromised features, it can be seen that it can be seen that the accuracy decreased with the reduction in the number of features. This can be explained by the reduction in available information, which is accepted in return for the increase in speed of the model. The following figures show the difference between the ROC curves in this regard.
 
-<img width="246" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/e1e8fa58-661d-47ef-8560-8bc9fa675ff0">
+<img width="500" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/e1e8fa58-661d-47ef-8560-8bc9fa675ff0">
 
 Figure 11 - ROC curve: trained with compromised features
 
