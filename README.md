@@ -26,7 +26,7 @@ II.	DATASET
 
 This chapter describes the datasets that were used for the realization of this project.
 
-## A.	TESLA Stock Dataset (TSLA)
+### A.	TESLA Stock Dataset (TSLA)
 
 The TESLA dataset includes approx. 10 years of the TSLA stock data from June 29, 2010 - February 3, 2020. The original dataset was slightly modified removing Adj Close for consistency reasons. Hence, the features that are included in the modified dataset are as follows: Date, Open, High, Low, Close, Volume, and Rate of Change. The prices are based on USD.
 
@@ -34,7 +34,7 @@ The TESLA dataset includes approx. 10 years of the TSLA stock data from June 29,
 
 The SAMSUNG dataset includes decades of SSNLF stock data from January 4, 2000 - May 23, 2022. The prices are also based on USD. It’s also modified as described in the TESLA Stock Dataset description.
 
-#### C.	TWITTER Stock Dataset (TWTR)
+### C.	TWITTER Stock Dataset (TWTR)
 
 The TWITTER dataset was chosen to be used because of its interesting history. Due to Elon Musk’s purchase of Twitter back in 2022, it became a private company, was delisted from the New York exchange, and is no longer in the stock market. This dataset contains Twitter’s history on the stock market from November 7, 2013 - October 27, 2022. The prices are also based on USD. It’s also modified as described in the TESLA Stock Dataset description.
 
