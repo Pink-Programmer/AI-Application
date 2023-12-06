@@ -44,7 +44,7 @@ III.	METHODOLOGY
 The project focuses on the prediction of stock prices with the help of Decision Tree and Random Forest. The selection of these artificial intelligence methods is based on the analysis of the dataset and the conclusion which model is suitable in this case. This is discussed in chapter IV in more detail. This chapter refers to the general methodology of implementation.
 
 
-A.	Original Dataset
+### A.	Original Dataset
 
 These are the features of the original dataset:
 Date - Includes the year, month, and day in that order (YYYY-MM-DD)
@@ -62,7 +62,7 @@ Volume – The total number of shares traded in the day.
 Adj Close - This means the adjusted closing price of the day. It’s adjusted to better reflect the stock’s value after anything such as corporate actions would affect the stock price after the market closes. However, this was taken out for consistency reasons.
 
 ---
-B.	Modified Dataset and Features
+### B.	Modified Dataset and Features
 
 The dataset is extended with modified data to make the dataset bigger and create more data for the AI to train on. With the additional created data, possible patterns and relationship between different information will be recognized by the AI. In the following it is described how the data is going to be modified and extended.
 
@@ -92,7 +92,7 @@ Difference between Open and Close – Here the difference between the Open and C
 
 Average difference between Open and Close - Similar to the High and Low values, the average difference between Open and Close is also calculated here over a specific time window.
 
-C.	Creating a label
+### C.	Creating a label
 
 The labels 1 and 0 are used to predict a rising or falling price, respectively. The labels are determined on the basis of the average rate of the low value. The low value, which represents the lowest price on a day, is used to forecast based on a worst-case scenario. To check the quality of the labels, the stock price performance is visualized with 3 data points each for a fall and rise in the stock price. The visualization is shown in the figure below. The green dots represent the rise and the red dots the fall of the share price.
 
@@ -100,11 +100,11 @@ The labels 1 and 0 are used to predict a rising or falling price, respectively. 
 
 Figure 3 – Visualization of the labels
 
-D.	Distribution of the dataset
+### D.	Distribution of the dataset
 
 In terms of training and testing, the modified dataset will be split up 70% of the data will be used for training and 30% used for testing. The amount of training data is distributed as such because there needs to be as much data as possible to train the AI. On the other hand, there must be enough testing data available to ensure an accurate testing result.
 
-E.	Implementation of the code for modifying and labelling the dataset
+### E.	Implementation of the code for modifying and labelling the dataset
 
 Several functions were declared for the realization of the project and subsequently applied. Their use is described below. The exact code can be found in the Jupyter notebook file.
 
@@ -120,7 +120,7 @@ def plot_label_visualization(data):
 
 This function displays the result of the automatically created labels. The progression of a price is displayed graphically. For each label, 3 data points are selected at random and displayed in the graph in the form of dots in different colors. A vertical line with the respective color is then drawn for each data point, making it clear which point in time is being considered for a forecast.
 
-F.	Function of a Decision Tree
+### F.	Function of a Decision Tree
 
 A Decision Tree classifier is a machine learning algorithm that can be used for classification purposes. The model resembles a tree that recursively splits the dataset into subsets decided by the values of parameters, that are regularly adjusted when training the model to achieve a higher level of accuracy. The following image illustrates the function of a Decision Tree:
 
@@ -176,7 +176,7 @@ After the Decision Tree has been created, a data point is classified based on th
 
 Figure 5 - The process of prediction with a Decision Tree
 
-G.	Function of a Random Forest
+### G.	Function of a Random Forest
 
 The Random Forest algorithm is an enhanced version of the Decision Tree classification model, making use of a collection of multiple Decision Trees. Decision Trees are highly sensitive to the training dataset and any modification to the training data can result in an entirely different Decision Tree. Random Forest can reduce the sensitivity towards the training data through generalization.
 
@@ -188,7 +188,7 @@ A Random Forest consists of several Decision Trees that are created independentl
 
 To merge the predictions of all trees and create a single prediction of the Random Forest, an aggregation is performed. To make a prediction using Random Forest, the data point is passed through each tree to get prediction outputs from every tree. The final decision is then made through majority voting of all predicted outcomes. The structure of a Random Forest is shown in figure 6.
 
-H.	Implementation of the code to create the model
+### H.	Implementation of the code to create the model
 
 In this project, the Decision Tree and Random Forest are both created with the library sklearn and programmed from scratch. As the models are each trained and compared with different parameters, functions are defined for the executions. The following functions have been created to summarize all the individual steps involved in creating the respective models. The general procedure of the functions is very similar. To execute the function, a previously modified dataset is provided. Firstly, the dataset is split into test and training data. Then the model is created and trained with the training data. At the end, the trained model is tested with the test data and a value for accuracy is created. At the end, the model, the predictions made during testing, the labels and the accuracy are returned. The declared functions of the respective models are presented in the following.
 
@@ -286,7 +286,7 @@ With the predict function, the created Random Forest model will be used to predi
 
 IV.	EVALUATION AND ANALYSIS
 ---
-A.	Concept for analysing the model
+### A.	Concept for analysing the model
 
 Various tests are carried out to analyze the quality of the predictions and the behavior of the Decision Tree and the Random Forest for stock performance and to determine whether this method is suitable. The tests are carried out in different variants based on the following aspects.
 
@@ -312,7 +312,7 @@ Based on the different variations, a total of 16 different models are created an
 
 ----
 
-B.	Analyzis of the dataset
+### B.	Analyzis of the dataset
 
 Before the dataset is used to train an artificial intelligence, it is first analyzed. The analysis is used to determine whether the dataset is suitable for classification and whether certain features have dependencies with regard to classification. A table with a large number of two-dimensional coordinate systems is created to analyze the dataset. In each coordinate system, two features are compared with each other by assigning them an axis and drawing data points based on them, which are colored differently according to their labels. If the differently colored data points are visibly separated in the coordinate system, this indicates that the respective features have a high significance in terms of classification. In addition, a graph is created for each feature, which shows the distribution of the data points according to their labels. A graph in the corresponding color is generated for each label. The more the distributions differ, the more meaningful the features are for classification.
 
@@ -334,12 +334,12 @@ Based on the analyzed datasets, it is now possible to forecast the behavior of t
 
 ---
 
-C.	AI Methodology Selection
+### C.	AI Methodology Selection
 Based on the analysis of data, the selection of Decision Tree and Random Forest is justified in this chapter. Due to the grouped distribution of data points in their labels, most data points are spatially separable. Under these circumstances, Random Forests are well suited. As this model is based on the Decision Tree concept, this method is also considered in this thesis.
 
 
 ----
-D.	Receiver operating characteristic
+### D.	Receiver operating characteristic
 The measure of a classification model’s performance at all classification thresholds can be visualized on a graph called the ROC Curve (receiver operating characteristic curve).
 
 The ROC Curve plots two parameters, True Positive rate (TPR) against False Positive rate (FPR), for all classification threshold values between 0 and 1. To understand TPR and FPR, the following key definitions from the Confusion Matrix are used:
@@ -374,7 +374,7 @@ The AUC is a metric ranging from 0 to 1. A value of 0 suggests that all positive
 
 ---
 
-E.	Results
+### E.	Results
 
 <img width="500" alt="image" src="https://github.com/Pink-Programmer/AI-Application/assets/148310919/1c562e7c-8a56-463c-b1e7-ab55e5980bb4">
 
