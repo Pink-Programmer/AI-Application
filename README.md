@@ -111,7 +111,6 @@ Several functions were declared for the realization of the project and subsequen
 
 This function is used to merge different datasets. A list of DataFrames is passed, which are combined into one at the end. Since datasets from different companies are used in this project, it is necessary to merge them in a standardized way.
 ```
-
 def combine_data(trade_datas):
     #chekcing if trade_data is empty
     if len(trade_datas) == 0:
@@ -133,10 +132,129 @@ def combine_data(trade_datas):
 ***def modify_data(trade_data,t_previous_days, t_label_days, comprimize_data):***
 
 This function is used to modify a dataset. The purpose of modifying the dataset is to extract more information from the given dataset and use it as an additional feature. The new features are used, for example, to recognize temporal patterns. The label is also created in this function. To execute the functions, the dataset is required as well as the number of days immediately before and after the respective data points that are to be analyzed. comprimize_data is a boolean which is used to determine whether all modified features should be used or a compromised version.
+```
+def modify_data(trade_data, t_previous_days, t_label_days, comprimize_data):   
+    #Define columns to be used for calculations
+    columns_names = ['Open', 'High', 'Low', 'Close', 'Volume']
+
+    # craete copy from DataFrame
+    modified_trade_data = trade_data.copy()
+    t_previous_days = 30
+    
+    compimized_columns = []
+
+    # Calculate deviations from multiple features
+    for attribute in columns_names:
+        for i in range(1, t_previous_days + 1):
+            deviation_col_name = f'deviation_{attribute}_{i}'
+            compimized_columns.append(deviation_col_name)
+            modified_trade_data[deviation_col_name] = modified_trade_data[attribute] - modified_trade_data[attribute].shift(i)
+            
+            # Calculate average deviation for each feature
+            average_deviation_col_name = f'average_deviation_{attribute}'
+            modified_trade_data[average_deviation_col_name] = modified_trade_data[[f'deviation_{attribute}_{j}' for j in range(1, i + 1)]].mean(axis=1)
+
+        # Calculate count of positive and negative deviations for each feature to see how often the value will rise or fall
+        positive_deviation_col_name = f'positive_deviations_{attribute}'
+        modified_trade_data[positive_deviation_col_name] = 0
+        for i in range(1, t_previous_days + 1):
+            modified_trade_data[positive_deviation_col_name] += (modified_trade_data[f'deviation_{attribute}_{i}'] > 0).astype(int)
+
+        negative_deviation_col_name = f'negative_deviations_{attribute}'
+        modified_trade_data[negative_deviation_col_name] = 0
+        for i in range(1, t_previous_days + 1):
+            modified_trade_data[negative_deviation_col_name] += (modified_trade_data[f'deviation_{attribute}_{i}'] < 0).astype(int)
+    
+    # Calculate differences between Open-Close and High-Low for several days
+    for i in range(1, t_previous_days + 1):
+        diff_col_name_open_close = f'difference_open_close_{i}'
+        compimized_columns.append(diff_col_name_open_close)
+        modified_trade_data[diff_col_name_open_close] = modified_trade_data['Open'] - modified_trade_data['Close'].shift(i)        
+
+        diff_col_name = f'difference_high_low_{i}'
+        compimized_columns.append(diff_col_name)
+        modified_trade_data[diff_col_name] = modified_trade_data[attribute] - modified_trade_data[attribute].shift(i)
+
+    #Calculate average differences between Open-Close and High-Low for several days
+    average_diff_col_name = f'average_difference_high_low'
+    modified_trade_data[average_diff_col_name] = modified_trade_data[diff_col_name].rolling(window=t_previous_days).mean()
+    average_diff_col_name_open_close = f'average_difference_open_close'
+    modified_trade_data[average_diff_col_name_open_close] = modified_trade_data[diff_col_name_open_close].rolling(window=t_previous_days).mean()
+
+
+    modified_trade_data.dropna(inplace=True)
+    modified_trade_data.head()   
+    
+    modified_trade_data.dropna(inplace=True)
+
+    # Create deviation and calculate average
+    deviation_values = []
+    for i in range(1, t_label_days + 1):
+        deviation_col_name = f'deviation_{i}'
+        modified_trade_data[deviation_col_name] = modified_trade_data['Low'].diff(i)
+        deviation_values.append(modified_trade_data[deviation_col_name])
+
+    average_deviation = sum(deviation_values) / t_label_days
+
+    # Create labels based on deviation values
+    modified_trade_data['Label'] = 0  # Initialisierung aller Labels als 0
+    modified_trade_data = modified_trade_data[t_label_days:]
+    average_deviation= average_deviation[t_label_days:]
+    for index, deviation_value in average_deviation.items():
+        
+        if deviation_value < 0:
+            modified_trade_data.loc[index, 'Label'] = 0
+        else:
+            modified_trade_data.loc[index, 'Label'] = 1
+    if comprimize_data:
+        #modified_trade_data.drop(columns=compimized_columns)
+        comp_columns = ["Date", "Open", "Close", "High", "Low", "Volume", "average_deviation_Open", "positive_deviations_Open", "negative_deviations_Open", "average_deviation_High", "positive_deviations_High", "negative_deviations_High", "average_deviation_Low", "positive_deviations_Low", "negative_deviations_Low", "average_deviation_Close", "positive_deviations_Close", "negative_deviations_Close", "average_deviation_Volume", "positive_deviations_Volume", "negative_deviations_Volume", "average_difference_high_low", "average_difference_open_close", "Label"  ]
+        modified_trade_data = modified_trade_data[comp_columns]
+
+    modified_trade_data.head(20)
+    return modified_trade_data
+
+```
 
 ***def plot_label_visualization(data):***
 
 This function displays the result of the automatically created labels. The progression of a price is displayed graphically. For each label, 3 data points are selected at random and displayed in the graph in the form of dots in different colors. A vertical line with the respective color is then drawn for each data point, making it clear which point in time is being considered for a forecast.
+```
+def plot_label_visualization(data):
+    #convert dates into datetime format
+    data['Date'] = pd.to_datetime(data['Date'])
+
+    # Randomly select 3 data points for each label with 'Label 1' and 'Label 0'
+    label_1_points = data[data['Label'] == 1].sample(n=3)
+    label_0_points = data[data['Label'] == 0].sample(n=3)
+
+    plt.figure(figsize=(8, 5))
+
+    # Plot der data set
+    plt.plot(data['Date'], data['Low'], label='Data', color='lightblue')
+    plt.scatter(label_1_points['Date'], label_1_points['Low'], color='green', label='Label 1', s=100)
+    plt.scatter(label_0_points['Date'], label_0_points['Low'], color='red', label='Label 0', s=100)
+
+    # draws a vertical line to visualize desired time where the values rise or fall
+    for idx, point in label_1_points.iterrows():
+        plt.axvline(point['Date'] + pd.Timedelta(days=t_label_days), color='green', linestyle='--', alpha=0.7)
+        
+    for idx, point in label_0_points.iterrows():
+        plt.axvline(point['Date'] + pd.Timedelta(days=t_label_days), color='red', linestyle='--', alpha=0.7)
+
+    plt.legend()
+    plt.xlabel('Date')
+    plt.ylabel('Low')
+    plt.title('Prediction for an increase of value (Label = 1)')
+
+    # Set x-axis to yearly intervals
+    plt.gca().xaxis.set_major_locator(mdates.YearLocator())
+    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y'))
+
+    plt.gcf().autofmt_xdate()
+
+    plt.show()
+```
 
 ### F.	Function of a Decision Tree
 
