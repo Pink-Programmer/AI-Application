@@ -330,17 +330,106 @@ In this project, the Decision Tree and Random Forest are both created with the l
 
 This function is about the creation of a Decision Tree classifier with the help of the module of the sklearn library. The following function by sklearn is used: DecisionTreeClassifier(max_depth=10,min_samples_split=5)
 
+```
+def run_decision_tree_classifier_by_sklearn(modified_trade_data):
+    # Extract features and labels from givin modified_trade_data
+    features = modified_trade_data.iloc[:, 1:-1]
+    labels = modified_trade_data['Label']  # Das Label, das vorhergesagt werden soll
+    
+    # Split the dataset into training and testing data
+    X_train, X_test, y_train, y_test = train_test_split(features, labels, test_size=0.3, random_state=42)
+
+    # Create a Decision Tree Classifier with sklearn
+    decision_tree_model_sklearn = DecisionTreeClassifier(max_depth=10, min_samples_split=5)
+
+    #train Desicion Tree model
+    decision_tree_model_sklearn.fit(X_train, y_train)
+
+    # Make predictions on the test set
+    y_pred_decision_tree_sklearn = decision_tree_model_sklearn.predict(X_test)
+
+    # Evaluate model
+    accuracy_decision_tree_sklearn = metrics.accuracy_score(y_test, y_pred_decision_tree_sklearn)
+    return decision_tree_model_sklearn, y_pred_decision_tree_sklearn, accuracy_decision_tree_sklearn, y_test
+```
+
 ***def run_random_forest_classifier_by_sklearn(modified_ trade_data):***
 
 This function is about the creation of a Random Forest classifier with the help of the module of the sklearn library. The following function by sklearn is used: RandomForestClassifier(n_estimators=10, random_state=42,max_depth=10, min_samples_split=5)
 
+```
+def run_random_forest_classifier_by_sklearn(modified_trade_data):
+    # Extract features and labels from the modified_trade_data
+    features = modified_trade_data.iloc[:, 1:-1]
+    labels = modified_trade_data['Label']  
+
+    # Split the dataset into training and testing data
+    X_train, X_test, y_train, y_test = train_test_split(features, labels, test_size=0.3, random_state=42)
+
+    # Build Random Forest model
+    random_forest_model_sklearn = RandomForestClassifier(n_estimators=10, random_state=42, max_depth=10, min_samples_split=5)
+    
+    #Train Random Forest Model
+    random_forest_model_sklearn.fit(X_train, y_train)
+
+    # Test the model by predicting based on the test data
+    y_pred_random_forest_sklearn = random_forest_model_sklearn.predict(X_test)
+
+    # Evaluation  of the Random Forest model
+    accuracy_random_forest_sklearn = accuracy_score(y_test, y_pred_random_forest_sklearn)
+    return random_forest_model_sklearn, y_pred_random_forest_sklearn, accuracy_random_forest_sklearn, y_test
+```
 ***def run_decision_tree_from_scratch(modified_trade_ data)***
 
 This function involves the creation of a Decision Tree classifier whose algorithm was implemented within the scope of this project. The exact algorithm will be explained in more detail later.
+```
+def run_decision_tree_from_scratch(modified_trade_data):
+    # Extracting features and labels from the modified_trade_data
+    features = modified_trade_data.iloc[:, 1:-1].values
+
+    labels = modified_trade_data.iloc[:, -1].values.reshape(-1,1)
+    labels = modified_trade_data['Label']
+
+    # Splitting the dataset into training and testing sets
+    X_train, X_test, y_train, y_test_scratch_dt = train_test_split(features, labels, test_size=0.3, random_state=42)
+
+    # Initialize and train the decision tree model from scratch
+    decision_tree_model_scratch = DecisionTree(min_datas_branching=5, max_depth=7)
+    y_train = y_train.to_numpy()
+    decision_tree_model_scratch.fit(X_train,y_train)
+
+    # Make predictions using the fitted model
+    y_pred_decision_tree_scratch = decision_tree_model_scratch.predict(X_test)
+
+     # Calculate accuracy of the model
+    accuracy_decision_tree_scratch = metrics.accuracy_score(y_test_scratch_dt, y_pred_decision_tree_scratch)
+    return decision_tree_model_scratch, y_pred_decision_tree_scratch, accuracy_decision_tree_scratch, y_test_scratch_dt
+```
 
 ***def run_random_forest_from_scratch(modified_trade_ data)***
 
-This function involves the creation of a Random Forest classifier whose algorithm was implemented within the scope of this project. The exact algorithm will be explained in more detail later.
+This function involves the creation of a Random Forest classifier whose algorithm was implemented within the scope of this project. The exact algorithm will be explained in more detail later. 
+```
+def run_random_forest_from_scratch(modified_trade_data):
+    # Extracting features and labels from the modified_trade_data
+    features = modified_trade_data.iloc[:, 1:-1].values
+    labels = modified_trade_data.iloc[:, -1].values.reshape(-1,1)
+    labels = modified_trade_data['Label']
+    
+    # Splitting the dataset into training and testing data
+    X_train, X_test, y_train, y_test_scratch_rf = train_test_split(features, labels, test_size=0.3, random_state=42)
+   
+    # Initialize and train the random forest model from scratch
+    random_forest_model_scratch = RandomForest(n_trees = 10 )
+    random_forest_model_scratch.fit(X_train,y_train)
+
+    # Make predictions using the fitted model
+    y_pred_random_forest_scratch = random_forest_model_scratch.predict(np.array(X_test))
+    
+    # Calculate accuracy of the model
+    accuracy_random_forest_scratch = metrics.accuracy_score(y_test_scratch_rf, y_pred_random_forest_scratch)
+    return random_forest_model_scratch, y_pred_random_forest_scratch, accuracy_random_forest_scratch, y_test_scratch_rf
+```
 
 The implementation from scratch is described below, starting with the Decision Tree.
 
