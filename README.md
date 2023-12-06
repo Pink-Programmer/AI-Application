@@ -130,11 +130,11 @@ Figure 4 - The structure of a Decision Tree
 
 A Decision Tree consists of the following basic components:
 
-     Root node – starting (top) node with all data points
+Root node – starting (top) node with all data points
+
+Decision node(s) – nodes with condition(s) to split data
      
-     Decision node(s) – nodes with condition(s) to split data
-     
-     Leaf nodes – nodes with ideally only data points of a   
+Leaf nodes – nodes with ideally only data points of a   
                            single class
 
 Starting from the root node, the Decision Tree classifier decides on the most optimal way to split the dataset into subsets. There are conditions in the decision nodes for splitting the data. Based on the conditions, the data is distributed to two or more branches. For example, a threshold can be used as a possible condition with which the features in the dataset are compared. The value of the threshold is random at the beginning and is adjusted during training. Optimal conditions are achieved during training with the highest possible information gain.
