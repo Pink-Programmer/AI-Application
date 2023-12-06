@@ -861,3 +861,8 @@ Sadorsky, P. (2021). MDPI. Retrieved November 14, 2023, from https://www.mdpi.co
 
 VikParuchuri. (2023, December 01). GitHub. Retrieved from https://github.com/dataquestio/project-walkthroughs/tree/master/sp_500
 
+***Coding Model from scratch based on*** : 
+https://github.com/Suji04/ML_from_Scratch/blob/master/decision%20tree%20classification.ipynb
+
+https://github.com/AssemblyAI-Examples/Machine-Learning-From-Scratch/blob/main/05%20Random%20Forests/RandomForest.py
+
