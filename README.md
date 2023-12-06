@@ -137,3 +137,36 @@ A Decision Tree consists of the following basic components:
                            single class
 
 Starting from the root node, the Decision Tree classifier decides on the most optimal way to split the dataset into subsets. There are conditions in the decision nodes for splitting the data. Based on the conditions, the data is distributed to two or more branches. For example, a threshold can be used as a possible condition with which the features in the dataset are compared. The value of the threshold is random at the beginning and is adjusted during training. Optimal conditions are achieved during training with the highest possible information gain.
+
+Information gain is defined as the effectiveness of a splitting condition in reducing entropy or Gini impurity within the data subset. The information gain can be calculated by the changes in entropy or the Gini index when training the model.
+
+Entropy is the measure of impurity of data points. The aim here is to achieve a low value. The lower the entropy value, the more homogeneous the data is after splitting. The entropy value is calculated as follows:
+
+Entropy=- ∑_(i=1)^n▒〖p_i* log (p_i)〗  
+
+p_i refers to the percentage of class i in the data subset at the node. Using the entropy determined, the information gain can be calculated as follows:
+
+Information Gain= Entropy(parent)- ∑▒〖w_i* Entropy(〖child〗_i)〗
+
+w_i refers to the weight of class i expressed as a fraction of the data subset at the node.
+
+Compared to entropy, the Gini index concentrates on the probability that a randomly selected instance will be misclassified. The aim here is to achieve the lowest possible value. The lower the Gini index, the lower the probability that something will be classified incorrectly. The Gini index is calculated as follows:
+
+Gini=1- ∑_(i=1)^j▒〖p_i〗^2 
+
+The variable j is the total number of classes in the target variable and p_i refers to the percentage of class i in the data subset at the node. Similar to the use of entropy, the information gain can be calculated using the Gini index and the following formula:
+
+Information Gain=Gini(parent)  - ∑▒〖w_i*Gini(〖child〗_i)〗
+
+Once the best possible condition based on the highest information gain has been determined, the data is split based on this and the process is repeated for each new node. The process continues until the stop conditions are met. The stop conditions are described in the following:
+
+    - All data points in a node belong to the same class
+    
+    - The maximum depth of the tree has been reached
+    
+    - The minimum number of data points in a node has been  
+       reached.
+
+As soon as the stop conditions are met, a leaf node is created instead of a decision node. The leaf node determines the class affiliation of the respective root in the Decision Tree.
+
+After the Decision Tree has been created, a data point is classified based on the conditions of the decision nodes. Depending on the condition, a specific branch in the Decision Tree is followed. The leaf node that is reached at the end determines the predicted class. The following image shows how a class of a data point is determined.
