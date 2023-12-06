@@ -437,53 +437,209 @@ The implementation from scratch is described below, starting with the Decision T
 
 The class Tree_Node represents a Node in a Decision Tree. It contains information about the splitting of the tree including the feature index, a threshold, and a subtree. Additionally, it contains the information gain resulting from the splitting of a tree. Furthermore, it contains the label if it is a leaf node.
 
+```
+class Tree_Node():
+    def __init__(self, feature_index=None, threshold=None, branch_1=None, branch_2=None, improvment=None, value=None):
+        """
+        Initializes a tree node for the DecisionTree model
+
+        Parameters:
+        feature_index (int): Index of the feature used for splitting at this node.
+        threshold (float): Threshold value for splitting the data at this node.
+        branch_1 (Tree_Node): Subtree for data less than or equal to the threshold.
+        branch_2 (Tree_Node): Subtree for data greater than the threshold.
+        improvement (float): Information gain from the split at this node.
+        value: Predicted class label if it is a leaf node.
+        """
+        self.feature_index = feature_index
+        self.threshold = threshold
+        self.branch_1 = branch_1
+        self.branch_2= branch_2
+        self.improvment = improvment
+        self.value = value
+```
+
 ***class DecisionTree():***
 
 The DecisionTree class represents a Decision Tree classifier which is implemented from scratch in the purpose of this project. It contains the parameters like min_datas_branching and max_depth which describe how often a tree will be split and the maximum depth of the split. Furthermore, it contains the roots of the previous branches.
+```
+class DecisionTree():
+    def __init__(self, min_datas_branching=5, max_depth=10):
+        """
+        Initializes a Decision Tree classifier
+
+        Parameters:
+        min_datas_branching (int): Minimum number of data points required to create a new branch.
+        max_depth (int): Maximum depth of the tree.
+        """
+        self.root = None        
+        self.min_datas_branching = min_datas_branching
+        self.max_depth = max_depth
+```
 
 ***def create_tree(self, dataset, curr_depth=0)***
 
 The function create_tree builds a Decision Tree recursively based on the given dataset. It uses values like min_datas_branching and max_depth as conditional values to decide whether conditions are met to calculate the best split and build another subtree recursively. If the conditions aren't met, a leaf node will be created.
+```
+def create_tree(self, dataset, curr_depth=0):
+        # Function to create a decision tree based on the dataset
+        # Implementation using using recursion
+        
+        # Extract data and labels
+        data = dataset[:,:-1]
+        label = dataset[:,-1]
+        number_of_datas, number_of_features = np.shape(data)
+
+        # Conditions for stopping tree growth depending on max_depth and min_datas_branching 
+        if number_of_datas>self.min_datas_branching and curr_depth<=self.max_depth and number_of_datas > number_of_features:
+            best_branching = self.get_best_branching(dataset, number_of_datas, number_of_features)
+
+            if best_branching["improvment"]>0: #if ==0, the node only consists of one type of class
+                branch_1_subtree = self.create_tree(best_branching["dataset_branch_1"], curr_depth+1)
+                branch_2_subtree = self.create_tree(best_branching["dataset_branch_2"], curr_depth+1)
+                print("returning node")
+                return Tree_Node(best_branching["feature_index"], best_branching["threshold"], branch_1_subtree, branch_2_subtree, best_branching["improvment"])
+        
+        # Creating a leaf node if stopping conditions are fullfilled
+        leaf_value = self.calculate_leaf_value(label)
+        print(" another tree created")
+        return Tree_Node(value=leaf_value)
+```
 
 ***def get_best_branching(self, dataset, number_of_datas, number_of_features)***
 
 This method searches for the best split in a Decision Tree based on the dataset. It iterates through the features and their possible thresholds to calculate the best branching. 
 
 It calculates the potential threshold for every feature, divides the dataset and calculates the information gain using whether the Gini index or the entropy. It updates the dictionary of the best branching based on the highest possible improvement in the information gain value.
+```
+def get_best_branching(self, dataset, number_of_datas, number_of_features):
+        best_branching = {}
+        max_improvment = -float("inf") 
+
+        # Loop through each feature to find the best split of the tree
+        for feature_index in range(number_of_features):
+            print("at feature: ", feature_index)
+            feature_values = dataset[:, feature_index]
+            possible_thresholds = np.unique(feature_values)
+
+            # Iterate through possible thresholds for the current feature
+            for threshold in possible_thresholds:
+                # Split the dataset based on the current feature and threshold
+                dataset_branch_1, dataset_branch_2= self.branch_tree(dataset, feature_index, threshold)
+                # Check if both branches have data points
+                if len(dataset_branch_1)>0 and len(dataset_branch_2)>0:
+                    label, label_branch_1, label_branch_2 = dataset[:, -1], dataset_branch_1[:, -1], dataset_branch_2[:, -1]
+                    
+                    # Calculating the information gain using Gini index
+                    new_improvment = self.information_gain(label, label_branch_1, label_branch_2, "gini")
+
+                    # Update the best branching if the improvement is greater
+                    if new_improvment>max_improvment:
+                        best_branching["feature_index"] = feature_index
+                        best_branching["threshold"] = threshold
+                        best_branching["dataset_branch_1"] = dataset_branch_1
+                        best_branching["dataset_branch_2"] = dataset_branch_2
+                        best_branching["improvment"] = new_improvment
+                        max_improvment = new_improvment
+        print("got best braching")
+        return best_branching
+```
 
 ***def branch_tree(self, dataset, feature_index, threshold)***
 
 The function branch_tree divides a dataset based on a feature and a threshold. It creates two arrays in which the data smaller or bigger than the thresholds are separated.
+```
+def branch_tree(self, dataset, feature_index, threshold):
+        dataset_branch_1 = np.array([row for row in dataset if row[feature_index]<=threshold])
+        dataset_branch_2= np.array([row for row in dataset if row[feature_index]>threshold])
+
+        return dataset_branch_1, dataset_branch_2
+```
 
 ***def information_gain(self, parent, l_child, r_child, mode="entropy")*** 
 
 The information gain function is used to calculate the information gain after a splitting of a branch. For the calculation it uses either the Gini index or the entropy, determined by the 'mode' parameter.
+```
+def information_gain(self, parent, l_child, r_child, mode="entropy"):
+        weight_branch_a = len(l_child) / len(parent)
+        weight_branch_b = len(r_child) / len(parent)
+        if mode=="gini":
+            gain = self.gini_index(parent) - (weight_branch_a*self.gini_index(l_child) + weight_branch_b*self.gini_index(r_child))
+        else:
+            gain = self.entropy(parent) - (weight_branch_a*self.entropy(l_child) + weight_branch_b*self.entropy(r_child))
+        return gain
+```
 
 ***def entropy(self, y):***   
 
 With the entropy function, disorders and randomness within a set of labels can be calculated. By examining the different types of labels and quantifying how unpredictable they are, it calculates the probability.
+```
+def entropy(self, y):     
+        class_labels = np.unique(y)
+        entropy = 0
+        for cls in class_labels:
+            p_cls = len(y[y == cls]) / len(y)
+            entropy += -p_cls * np.log2(p_cls)
+        return entropy
+```
 
 ***def gini_index(self, y):***
 
 With the function Gini index, similar to the entropy function, the impurity or disorder is going to be measured. By iterating through the labels, it calculates the Gini index based on the probability of the occurrence of each of the labels. After applying a specific mathematical formula, it returns the Gini index.
+```
+def gini_index(self, y):   
+        class_labels = np.unique(y)
+        gini = 0
+        for cls in class_labels:
+            p_cls = len(y[y == cls]) / len(y)
+            gini += p_cls**2
+        return 1 - gini
+```
 
 ***def calculate_leaf_value(self, label):***
 
 The function calculate_leaf_value detects the label of a leaf note. It predicts the value by doing a majority voting of the labels that the leaf contains. The most frequent label will be returned as its label. 
+```
+ def calculate_leaf_value(self, label):
+        label = list(label)
+        return max(label, key=label.count)
+```
 
 ***def fit(self, data, label):***
 
 With the fit function, the Decision Tree is going to be trained. For this, the dataset and the labels are merged before using the function create_tree to establish the nodes.
+```
+def fit(self, data, label):
+        label_array = label.reshape(-1, 1)
+        dataset = np.concatenate((data, label_array), axis=1)
+
+        self.root = self.create_tree(dataset)
+```
 
 ***def predict(self, data):***
 
 The predict function is used to create predictions based on the given dataset. It iterates through each data point and creates a prediction with the function make_prediction function. 
+```
+def predict(self, data): 
+        preditions = [self.make_prediction(x, self.root) for x in data]
+        return preditions
+```
 
 ***def make_prediction(self, x, tree):***
 
 The make_prediction function is used within the predict function. It uses the Decision Tree structure and evaluates a single data point against the nodes of the tree. It compares the feature values with the nodes and finds the correct root through the tree. Finally, it finds the predicted label when reaching the leaf note and returns it.
 
 The implementation of the Random Forest in scratch is now presented below. It should be mentioned that the Decision Tree programmed in scratch presented above is used to create the forest.
+```
+def make_prediction(self, x, tree):
+        if tree.value!=None: return tree.value
+        
+        feature_val = x[tree.feature_index]
+        if feature_val<=tree.threshold:
+            return self.make_prediction(x, tree.branch_1)
+        else:
+            return self.make_prediction(x, tree.branch_2)
+```
 
 ***class RandomForest():***
 
