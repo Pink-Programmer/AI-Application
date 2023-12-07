@@ -10,7 +10,7 @@ of each day of the share are shown in the dataset. The training will be done wit
 technique. Depending on the result of the training, if necessary, the dataset will be expanded or the 
 model will be compared with another technique in the field of artificial intelligence.
 
-***Youtube-Video of this Project*** :
+***Youtube-Video of this Project*** : https://www.youtube.com/watch?si=hd7nHiba8JTU92uh&v=o6216OdvFh4&feature=youtu.be
 
 
 I.	INTRODUCTION
