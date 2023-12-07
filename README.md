@@ -1,6 +1,6 @@
-# AI-Application
-Group Assignment: Stock market prediction
+# Stock Market Predictions with Artificial Intelligence 
 
+Group Assignment: 
 
 In this project, artificial intelligence is used to predict the stock market. The goal is to train an artificial 
 intelligence to make the decision whether to sell the stock or not. With the decisions made, it is 
@@ -9,6 +9,8 @@ approx. 18000 data. The data such as date, open, high, low, close, volume, divid
 of each day of the share are shown in the dataset. The training will be done with the Random Forest 
 technique. Depending on the result of the training, if necessary, the dataset will be expanded or the 
 model will be compared with another technique in the field of artificial intelligence.
+
+***Group members*** : Jennifer Sissi Lange, Gin Lo Hoi Ching, Kerk Zong Zhe, Jade Lu
 
 ***Youtube-Video of this Project*** : https://www.youtube.com/watch?si=hd7nHiba8JTU92uh&v=o6216OdvFh4&feature=youtu.be
 
