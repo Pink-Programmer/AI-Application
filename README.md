@@ -67,7 +67,7 @@ Date - Includes the year, month, and day in that order (YYYY-MM-DD)
 
 ### B.	Modified Dataset and Features
 
-The dataset is extended with modified data to make the dataset bigger and create more data for the AI to train on. With the additional created data, possible patterns and relationship between different information will be recognized by the AI. In the following it is described how the data is going to be modified and extended.
+The dataset is extended with modified data to make the dataset bigger and create more data for the AI to train on. With the additional created data, possible patterns and relationship between different information will be recognized by the AI. In the following it is described how the data is going to be modified and extended. The concepts to extract more features are similar to the approaches of Sadorsky (2021), whose approach is described in the chapter "Related Works".
 
 **Slope/rate of change** - It is calculated using the formula below. The purpose is to train the AI to consider the influence that stock prices on the days prior have on that of the present day. This helps the AI recognize certain patterns happening in the given datasets. For instance, when calculating the rate of change for the opening price, y2 would be the opening price of the current day, y1 would be the previous day’s opening price, and x2 - x1 would be the number of days. The slope is calculated as follows:
 
